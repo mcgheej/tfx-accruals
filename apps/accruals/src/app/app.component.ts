@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { ShellComponent } from '@tfx-accruals/accruals/shell';
 
 @Component({
   standalone: true,
-  imports: [RouterModule],
+  imports: [RouterModule, ShellComponent],
   selector: 'tfx-root',
-  template: `<h1 class="border text-green-600">Hello world!</h1>`,
+  template: `<tfx-shell></tfx-shell>`,
 })
 export class AppComponent {
   title = 'accruals';

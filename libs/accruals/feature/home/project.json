@@ -1,0 +1,20 @@
+{
+  "name": "accruals-feature-home",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/accruals/feature/home/src",
+  "prefix": "tfx-accruals",
+  "tags": [],
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/accruals/feature/home/**/*.ts",
+          "libs/accruals/feature/home/**/*.html"
+        ]
+      }
+    }
+  }
+}
