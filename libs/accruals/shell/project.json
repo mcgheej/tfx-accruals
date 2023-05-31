@@ -1,0 +1,20 @@
+{
+  "name": "accruals-shell",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/accruals/shell/src",
+  "prefix": "tfx",
+  "tags": [],
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/accruals/shell/**/*.ts",
+          "libs/accruals/shell/**/*.html"
+        ]
+      }
+    }
+  }
+}

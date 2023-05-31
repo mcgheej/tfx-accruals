@@ -1,0 +1,20 @@
+{
+  "name": "accruals-feature-login",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/accruals/feature/login/src",
+  "prefix": "tfx-accruals",
+  "tags": [],
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/accruals/feature/login/**/*.ts",
+          "libs/accruals/feature/login/**/*.html"
+        ]
+      }
+    }
+  }
+}

@@ -14,7 +14,18 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@tfx-accruals/accruals/feature/home": [
+        "libs/accruals/feature/home/src/index.ts"
+      ],
+      "@tfx-accruals/accruals/feature/login": [
+        "libs/accruals/feature/login/src/index.ts"
+      ],
+      "@tfx-accruals/accruals/feature/register": [
+        "libs/accruals/feature/register/src/index.ts"
+      ],
+      "@tfx-accruals/accruals/shell": ["libs/accruals/shell/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

@@ -1,0 +1,36 @@
+<nav
+  class="flex flex-wrap items-center justify-between w-full py-4 md:py-0 px-4 text-lg text-gray-700 bg-white"
+>
+  <tfx-logo></tfx-logo>
+  <tfx-hamburger-button
+    (menuToggle)="onMenuButtonClick()"
+  ></tfx-hamburger-button>
+  <div
+    [ngClass]="{ hidden: menuHidden }"
+    class="w-full md:flex md:items-center md:w-auto"
+    id="menu"
+  >
+    <ul class="pt-4 text-base text-gray-700 md:flex md:justify-between md:pt-0">
+      <li *ngIf="isLoggedIn$ | async">
+        <div
+          class="md:p-4 py-2 block hover:text-purple-400 cursor-pointer select-none"
+          (click)="onLogout()"
+        >
+          Logout
+        </div>
+      </li>
+      <li *ngIf="isLoggedOut$ | async">
+        <a class="md:p-4 py-2 block hover:text-purple-400" routerLink="/login"
+          >Login</a
+        >
+      </li>
+      <li *ngIf="isLoggedOut$ | async">
+        <a
+          class="md:p-4 py-2 block hover:text-purple-400"
+          routerLink="/register"
+          >Register</a
+        >
+      </li>
+    </ul>
+  </div>
+</nav>
