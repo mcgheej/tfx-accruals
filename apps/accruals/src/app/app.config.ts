@@ -6,7 +6,7 @@ import {
   withEnabledBlockingInitialNavigation,
 } from '@angular/router';
 import { appRoutes } from '@tfx-accruals/accruals/shell';
-import { provideAfAuthentication } from '@tfx-accruals/accruals/util/af-authentication';
+import { provideAfAuthentication } from '@tfx-accruals/shared/util/af-authentication';
 import { firebaseConfig } from '@tfx-accruals/accruals/util/firebase-config';
 
 export const appConfig: ApplicationConfig = {

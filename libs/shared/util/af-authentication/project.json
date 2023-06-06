@@ -1,7 +1,7 @@
 {
-  "name": "accruals-util-af-authentication",
+  "name": "shared-util-af-authentication",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/accruals/util/af-authentication/src",
+  "sourceRoot": "libs/shared/util/af-authentication/src",
   "prefix": "tfx-accruals",
   "tags": [],
   "projectType": "library",
@@ -11,8 +11,8 @@
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": [
-          "libs/accruals/util/af-authentication/**/*.ts",
-          "libs/accruals/util/af-authentication/**/*.html"
+          "libs/shared/util/af-authentication/**/*.ts",
+          "libs/shared/util/af-authentication/**/*.html"
         ]
       }
     }

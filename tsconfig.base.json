@@ -25,11 +25,11 @@
         "libs/accruals/feature/register/src/index.ts"
       ],
       "@tfx-accruals/accruals/shell": ["libs/accruals/shell/src/index.ts"],
-      "@tfx-accruals/accruals/util/af-authentication": [
-        "libs/accruals/util/af-authentication/src/index.ts"
-      ],
       "@tfx-accruals/accruals/util/firebase-config": [
         "libs/accruals/util/firebase-config/src/index.ts"
+      ],
+      "@tfx-accruals/shared/util/af-authentication": [
+        "libs/shared/util/af-authentication/src/index.ts"
       ]
     }
   },

@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { AfAuthenticationService } from '@tfx-accruals/accruals/util/af-authentication';
+import { AfAuthenticationService } from '@tfx-accruals/shared/util/af-authentication';
 import { NavbarComponent } from '../components/navbar/navbar.component';
 
 @Component({
