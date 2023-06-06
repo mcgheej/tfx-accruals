@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { BehaviorSubject, map } from 'rxjs';
+import { AfAuthenticationService } from '@tfx-accruals/accruals/util/af-authentication';
+import { map } from 'rxjs';
 import { HamburgerButtonComponent } from './hamburger-button.component';
 import { LogoComponent } from './logo.component';
 
@@ -14,16 +15,26 @@ import { LogoComponent } from './logo.component';
 })
 export class NavbarComponent {
   menuHidden = true;
-  private isLoggedIn = true;
-  isLoggedIn$ = new BehaviorSubject<boolean>(this.isLoggedIn);
-  isLoggedOut$ = this.isLoggedIn$.pipe(map((loggedIn) => !loggedIn));
+  vm$ = this.afAuth.isLoggedIn$.pipe(
+    map((loggedIn) => {
+      return {
+        loggedIn,
+      };
+    })
+  );
+
+  constructor(private afAuth: AfAuthenticationService) {}
 
   onMenuButtonClick() {
     this.menuHidden = !this.menuHidden;
   }
 
+  // TODO: Temp method will be replaced by login page
+  onLogin() {
+    this.afAuth.login('mcghee.j@btinternet.com', 'howdydoodee');
+  }
+
   onLogout() {
-    this.isLoggedIn = false;
-    this.isLoggedIn$.next(this.isLoggedIn);
+    this.afAuth.logout();
   }
 }

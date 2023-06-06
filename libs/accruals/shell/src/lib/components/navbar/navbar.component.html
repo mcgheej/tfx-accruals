@@ -1,4 +1,5 @@
 <nav
+  *ngIf="vm$ | async as vm"
   class="flex flex-wrap items-center justify-between w-full py-4 md:py-0 px-4 text-lg text-gray-700 bg-white"
 >
   <tfx-logo></tfx-logo>
@@ -11,7 +12,7 @@
     id="menu"
   >
     <ul class="pt-4 text-base text-gray-700 md:flex md:justify-between md:pt-0">
-      <li *ngIf="isLoggedIn$ | async">
+      <li *ngIf="vm.loggedIn">
         <div
           class="md:p-4 py-2 block hover:text-purple-400 cursor-pointer select-none"
           (click)="onLogout()"
@@ -19,12 +20,20 @@
           Logout
         </div>
       </li>
-      <li *ngIf="isLoggedOut$ | async">
-        <a class="md:p-4 py-2 block hover:text-purple-400" routerLink="/login"
+      <!-- TODO: Temp login element to be replaced with code below -->
+      <li *ngIf="!vm.loggedIn">
+        <a
+          class="md:p-4 py-2 block hover:text-purple-400 cursor-pointer select-none"
+          (click)="onLogin()"
           >Login</a
         >
       </li>
-      <li *ngIf="isLoggedOut$ | async">
+      <!-- <li *ngIf="!vm.loggedIn">
+        <a class="md:p-4 py-2 block hover:text-purple-400" routerLink="/login"
+          >Login</a
+        >
+      </li> -->
+      <li *ngIf="!vm.loggedIn">
         <a
           class="md:p-4 py-2 block hover:text-purple-400"
           routerLink="/register"
