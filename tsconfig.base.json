@@ -15,6 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@tfx-accruals/accruals/feature/dashboard": [
+        "libs/accruals/feature/dashboard/src/index.ts"
+      ],
       "@tfx-accruals/accruals/feature/home": [
         "libs/accruals/feature/home/src/index.ts"
       ],

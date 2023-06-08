@@ -20,19 +20,11 @@
           Logout
         </div>
       </li>
-      <!-- TODO: Temp login element to be replaced with code below -->
       <li *ngIf="!vm.loggedIn">
-        <a
-          class="md:p-4 py-2 block hover:text-purple-400 cursor-pointer select-none"
-          (click)="onLogin()"
-          >Login</a
-        >
-      </li>
-      <!-- <li *ngIf="!vm.loggedIn">
         <a class="md:p-4 py-2 block hover:text-purple-400" routerLink="/login"
           >Login</a
         >
-      </li> -->
+      </li>
       <li *ngIf="!vm.loggedIn">
         <a
           class="md:p-4 py-2 block hover:text-purple-400"

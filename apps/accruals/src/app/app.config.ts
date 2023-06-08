@@ -17,7 +17,7 @@ export const appConfig: ApplicationConfig = {
     ),
     importProvidersFrom(provideAuth(() => getAuth())),
     provideAfAuthentication({
-      urlOnLoggedIn: '/home',
+      urlOnLoggedIn: '/dashboard',
       urlOnLoggedOut: '/home',
     }),
   ],

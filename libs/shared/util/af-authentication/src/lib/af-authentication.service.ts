@@ -21,7 +21,6 @@ export class AfAuthenticationService {
   isLoggedIn$: Observable<boolean>;
 
   constructor() {
-    console.log(this.config);
     this.isLoggedIn$ = this.authState$.pipe(
       map((user) => !!user),
       tap((loggedIn) => {

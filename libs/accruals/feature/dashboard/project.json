@@ -1,0 +1,20 @@
+{
+  "name": "accruals-feature-dashboard",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/accruals/feature/dashboard/src",
+  "prefix": "tfx",
+  "tags": [],
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/accruals/feature/dashboard/**/*.ts",
+          "libs/accruals/feature/dashboard/**/*.html"
+        ]
+      }
+    }
+  }
+}

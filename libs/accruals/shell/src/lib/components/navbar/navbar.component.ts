@@ -29,11 +29,6 @@ export class NavbarComponent {
     this.menuHidden = !this.menuHidden;
   }
 
-  // TODO: Temp method will be replaced by login page
-  onLogin() {
-    this.afAuth.login('mcghee.j@btinternet.com', 'howdydoodee');
-  }
-
   onLogout() {
     this.afAuth.logout();
   }
