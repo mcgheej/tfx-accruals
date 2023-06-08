@@ -1,13 +1,17 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { AfAuthenticationService } from '@tfx-accruals/shared/util/af-authentication';
 
 @Component({
   selector: 'tfx-login',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MatButtonModule],
   template: ` <button
-    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mx-2"
+    mat-raised-button
+    color="primary"
+    class="mx-2"
     (click)="onLoginClick()"
   >
     Login
@@ -16,9 +20,17 @@ import { AfAuthenticationService } from '@tfx-accruals/shared/util/af-authentica
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginComponent {
+  private snackBar: MatSnackBar = inject(MatSnackBar);
   private afAuth: AfAuthenticationService = inject(AfAuthenticationService);
 
   onLoginClick() {
-    this.afAuth.login('mcghee.j@btinternet.com', 'howdydoodee');
+    this.afAuth.login('mcghee.j@btinternet.com', 'howdydoodee').subscribe({
+      error: (err) => {
+        console.log(err);
+        this.snackBar.open('Invalid username/password', undefined, {
+          duration: 2000,
+        });
+      },
+    });
   }
 }

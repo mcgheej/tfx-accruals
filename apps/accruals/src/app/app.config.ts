@@ -1,6 +1,8 @@
 import { ApplicationConfig, importProvidersFrom } from '@angular/core';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { provideAnimations } from '@angular/platform-browser/animations';
 import {
   provideRouter,
   withEnabledBlockingInitialNavigation,
@@ -11,11 +13,13 @@ import { provideAfAuthentication } from '@tfx-accruals/shared/util/af-authentica
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideAnimations(),
     provideRouter(appRoutes, withEnabledBlockingInitialNavigation()),
-    importProvidersFrom(
-      provideFirebaseApp(() => initializeApp(firebaseConfig))
-    ),
-    importProvidersFrom(provideAuth(() => getAuth())),
+    importProvidersFrom([
+      MatSnackBarModule,
+      provideFirebaseApp(() => initializeApp(firebaseConfig)),
+      provideAuth(() => getAuth()),
+    ]),
     provideAfAuthentication({
       urlOnLoggedIn: '/dashboard',
       urlOnLoggedOut: '/home',
