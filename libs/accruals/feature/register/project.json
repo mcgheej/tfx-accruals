@@ -2,7 +2,7 @@
   "name": "accruals-feature-register",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/accruals/feature/register/src",
-  "prefix": "tfx-accruals",
+  "prefix": "tfx",
   "tags": [],
   "projectType": "library",
   "targets": {

@@ -1,5 +1,4 @@
 export interface AfAuthConfig {
-  loginUrl: string;
-  authInitialUrl: string;
-  anonInitialUrl: string;
+  urlOnLoggedIn: string;
+  urlOnLoggedOut: string;
 }

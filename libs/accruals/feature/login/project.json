@@ -2,7 +2,7 @@
   "name": "accruals-feature-login",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/accruals/feature/login/src",
-  "prefix": "tfx-accruals",
+  "prefix": "tfx",
   "tags": [],
   "projectType": "library",
   "targets": {

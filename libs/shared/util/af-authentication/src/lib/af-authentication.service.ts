@@ -5,21 +5,31 @@ import {
   authState,
   signInWithEmailAndPassword,
 } from '@angular/fire/auth';
-import { Observable, from, map } from 'rxjs';
+import { Router } from '@angular/router';
+import { Observable, from, map, tap } from 'rxjs';
 import { AfAuthenticationConfig } from './tokens';
 import { AfAuthConfig } from './types';
 
 @Injectable()
 export class AfAuthenticationService {
+  private router: Router = inject(Router);
   private config: AfAuthConfig = inject(AfAuthenticationConfig);
   private afAuth: Auth = inject(Auth);
+
   private authState$ = authState(this.afAuth);
 
   isLoggedIn$: Observable<boolean>;
 
   constructor() {
     console.log(this.config);
-    this.isLoggedIn$ = this.authState$.pipe(map((user) => !!user));
+    this.isLoggedIn$ = this.authState$.pipe(
+      map((user) => !!user),
+      tap((loggedIn) => {
+        loggedIn
+          ? this.router.navigateByUrl(this.config.urlOnLoggedIn)
+          : this.router.navigateByUrl(this.config.urlOnLoggedOut);
+      })
+    );
   }
 
   login(email: string, password: string): Observable<UserCredential> {

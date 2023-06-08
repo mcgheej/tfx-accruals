@@ -6,8 +6,8 @@ import {
   withEnabledBlockingInitialNavigation,
 } from '@angular/router';
 import { appRoutes } from '@tfx-accruals/accruals/shell';
-import { provideAfAuthentication } from '@tfx-accruals/shared/util/af-authentication';
 import { firebaseConfig } from '@tfx-accruals/accruals/util/firebase-config';
+import { provideAfAuthentication } from '@tfx-accruals/shared/util/af-authentication';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -17,9 +17,8 @@ export const appConfig: ApplicationConfig = {
     ),
     importProvidersFrom(provideAuth(() => getAuth())),
     provideAfAuthentication({
-      loginUrl: 'login',
-      authInitialUrl: 'initialAuth',
-      anonInitialUrl: 'initialAnon',
+      urlOnLoggedIn: '/home',
+      urlOnLoggedOut: '/home',
     }),
   ],
 };
