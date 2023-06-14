@@ -28,6 +28,9 @@
         "libs/accruals/feature/register/src/index.ts"
       ],
       "@tfx-accruals/accruals/shell": ["libs/accruals/shell/src/index.ts"],
+      "@tfx-accruals/accruals/util/assets": [
+        "libs/accruals/util/assets/src/index.ts"
+      ],
       "@tfx-accruals/accruals/util/firebase-config": [
         "libs/accruals/util/firebase-config/src/index.ts"
       ],

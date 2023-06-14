@@ -9,3 +9,12 @@ html,
 body {
   height: 100%;
 }
+
+/* TODO: Workaround for styles clash between tailwind and Angular Material */
+/* Form Field when appearance set to outline. Picked up from SO answer to */
+/* question: Angular 15 Material bug input on focus when using Tailwindcss */
+
+.mat-mdc-form-field.mat-mdc-form-field.mat-mdc-form-field.mat-mdc-form-field.mat-mdc-form-field
+  .mdc-notched-outline__notch {
+  border-right-style: hidden;
+}

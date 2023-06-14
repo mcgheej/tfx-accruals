@@ -8,8 +8,12 @@ import { NavbarComponent } from '../components/navbar/navbar.component';
   standalone: true,
   imports: [CommonModule, RouterOutlet, NavbarComponent],
   template: `
-    <tfx-navbar></tfx-navbar>
-    <router-outlet></router-outlet>
+    <div class="h-full grid grid-rows-[auto,1fr]">
+      <tfx-navbar></tfx-navbar>
+      <div>
+        <router-outlet></router-outlet>
+      </div>
+    </div>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

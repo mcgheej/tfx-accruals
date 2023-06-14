@@ -15,7 +15,15 @@
         "main": "apps/accruals/src/main.ts",
         "polyfills": ["zone.js"],
         "tsConfig": "apps/accruals/tsconfig.app.json",
-        "assets": ["apps/accruals/src/favicon.ico", "apps/accruals/src/assets"],
+        "assets": [
+          "apps/accruals/src/favicon.ico",
+          "apps/accruals/src/assets",
+          {
+            "input": "libs/accruals/util/assets/src/lib",
+            "glob": "*.jpg",
+            "output": "assets"
+          }
+        ],
         "styles": [
           "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
           "apps/accruals/src/styles.css"
