@@ -24,5 +24,12 @@ export const appRoutes: Route[] = [
         (m) => m.dashboardRoutes
       ),
   },
+  {
+    path: 'accruals',
+    loadChildren: () =>
+      import('@tfx-accruals/accruals/feature/accruals').then(
+        (m) => m.accrualsRoutes
+      ),
+  },
   { path: '**', component: PageNotFoundComponent },
 ];
