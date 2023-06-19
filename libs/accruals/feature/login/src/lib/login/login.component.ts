@@ -49,17 +49,6 @@ export class LoginComponent {
     password: ['', [Validators.required, Validators.minLength(8)]],
   });
 
-  onLoginClick() {
-    this.afAuth.login('mcghee.j@btinternet.com', 'howdydoodee').subscribe({
-      error: (err) => {
-        console.log(err);
-        this.snackBar.open('Invalid username/password', undefined, {
-          duration: 2000,
-        });
-      },
-    });
-  }
-
   getEmailError(): string {
     if (this.loginForm.controls.email.hasError('required')) {
       return 'You must enter an email address';
