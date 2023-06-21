@@ -37,6 +37,9 @@
       "@tfx-accruals/accruals/util/firebase-config": [
         "libs/accruals/util/firebase-config/src/index.ts"
       ],
+      "@tfx-accruals/shared/ui/tfx-progress-donut": [
+        "libs/shared/ui/tfx-progress-donut/src/index.ts"
+      ],
       "@tfx-accruals/shared/util/af-authentication": [
         "libs/shared/util/af-authentication/src/index.ts"
       ]
