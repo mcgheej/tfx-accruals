@@ -1,1 +1,6 @@
-<p>accruals works!</p>
+<button mat-raised-button color="primary" (click)="onCreateAccrual()">
+  Create Accrual
+</button>
+<pre *ngIf="accruals$ | async as accruals">
+  {{ accruals | json }}
+</pre>

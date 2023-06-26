@@ -1,0 +1,26 @@
+{
+  "name": "accruals-util-accruals-types",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/accruals/util/accruals-types/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/accruals/util/accruals-types",
+        "main": "libs/accruals/util/accruals-types/src/index.ts",
+        "tsConfig": "libs/accruals/util/accruals-types/tsconfig.lib.json",
+        "assets": []
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/accruals/util/accruals-types/**/*.ts"]
+      }
+    }
+  },
+  "tags": []
+}

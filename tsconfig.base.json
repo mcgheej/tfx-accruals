@@ -15,6 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@tfx-accruals/accruals/data-access/af-accruals-data": [
+        "libs/accruals/data-access/af-accruals-data/src/index.ts"
+      ],
       "@tfx-accruals/accruals/feature/accruals": [
         "libs/accruals/feature/accruals/src/index.ts"
       ],
@@ -31,6 +34,9 @@
         "libs/accruals/feature/register/src/index.ts"
       ],
       "@tfx-accruals/accruals/shell": ["libs/accruals/shell/src/index.ts"],
+      "@tfx-accruals/accruals/util/accruals-types": [
+        "libs/accruals/util/accruals-types/src/index.ts"
+      ],
       "@tfx-accruals/accruals/util/assets": [
         "libs/accruals/util/assets/src/index.ts"
       ],

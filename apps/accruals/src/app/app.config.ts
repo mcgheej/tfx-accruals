@@ -1,6 +1,7 @@
 import { ApplicationConfig, importProvidersFrom } from '@angular/core';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import {
@@ -19,6 +20,7 @@ export const appConfig: ApplicationConfig = {
       MatSnackBarModule,
       provideFirebaseApp(() => initializeApp(firebaseConfig)),
       provideAuth(() => getAuth()),
+      provideFirestore(() => getFirestore()),
     ]),
     provideAfAuthentication({
       urlOnLoggedIn: '/dashboard',

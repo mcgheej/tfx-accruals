@@ -1,0 +1,20 @@
+{
+  "name": "accruals-data-access-af-accruals-data",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/accruals/data-access/af-accruals-data/src",
+  "prefix": "tfx",
+  "tags": [],
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/accruals/data-access/af-accruals-data/**/*.ts",
+          "libs/accruals/data-access/af-accruals-data/**/*.html"
+        ]
+      }
+    }
+  }
+}
