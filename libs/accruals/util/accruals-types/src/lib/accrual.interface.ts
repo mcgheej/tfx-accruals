@@ -22,7 +22,7 @@
  * durationInMonths:  how many months the accrual is active, that is where
  * (number)           monthly deposits are accrued.
  *
- * depositProfile:    an array of the monthly deposits paid and/or to be
+ * depositSchedule:   an array of the monthly deposits paid and/or to be
  * (number[])         paid for the accrual. The array will contain an element
  *                    for each month the accrual is active.
  *
@@ -38,6 +38,6 @@ export interface Accrual {
   targetValue: number;
   startDate: string;
   durationInMonths: number;
-  depositProfile: number[];
+  depositSchedule: number[];
   deleted: boolean;
 }

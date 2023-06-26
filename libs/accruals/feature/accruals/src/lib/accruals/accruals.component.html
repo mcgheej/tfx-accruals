@@ -1,6 +1,27 @@
-<button mat-raised-button color="primary" (click)="onCreateAccrual()">
+<!-- <button mat-raised-button color="primary" (click)="onCreateAccrual()">
   Create Accrual
 </button>
+
 <pre *ngIf="accruals$ | async as accruals">
   {{ accruals | json }}
-</pre>
+</pre> -->
+<div *ngIf="url$ | async as url">
+  <mat-tab-group
+    *ngIf="categorisedAccruals$ | async as categorisedAccruals"
+    (focusChange)="setShowAddAccrualButton(false)"
+    (animationDone)="setShowAddAccrualButton(true)"
+  >
+    <mat-tab label="Active Accruals" *ngIf="url === 'accruals'">
+      active accruals!
+    </mat-tab>
+    <mat-tab label="Pending Accruals" *ngIf="url === 'accruals'">
+      pending accruals!
+    </mat-tab>
+    <mat-tab label="Expired Accruals" *ngIf="url === 'accruals'">
+      expired accruals!
+    </mat-tab>
+    <mat-tab label="Deleted Accruals" *ngIf="url === 'accruals/recycle'">
+      deleted accruals!
+    </mat-tab>
+  </mat-tab-group>
+</div>

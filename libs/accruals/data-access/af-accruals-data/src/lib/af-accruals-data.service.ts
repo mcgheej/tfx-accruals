@@ -9,10 +9,15 @@ import {
   doc,
   updateDoc,
 } from '@angular/fire/firestore';
-import { Accrual } from '@tfx-accruals/accruals/util/accruals-types';
+import {
+  Accrual,
+  PresentationAccrual,
+} from '@tfx-accruals/accruals/util/accruals-types';
 import { AfAuthenticationService } from '@tfx-accruals/shared/util/af-authentication';
+import * as dayjs from 'dayjs';
 import { addDoc } from 'firebase/firestore';
-import { Observable, catchError, from, of, throwError } from 'rxjs';
+import { Observable, catchError, from, map, of, throwError } from 'rxjs';
+import { getAccrualTotals } from './helpers';
 
 @Injectable({ providedIn: 'root' })
 export class AfAccrualsDataService {
@@ -21,16 +26,30 @@ export class AfAccrualsDataService {
 
   private accrualsCollection: CollectionReference;
 
-  accruals$: Observable<Accrual[]>;
+  presentationAccruals$: Observable<PresentationAccrual[]>;
 
   constructor() {
     console.log('constructing data service');
     this.accrualsCollection = collection(this.firestore, 'accruals');
-    this.accruals$ = (
+    this.presentationAccruals$ = (
       collectionData(this.accrualsCollection, {
         idField: 'id',
       }) as Observable<Accrual[]>
-    ).pipe(catchError(() => of([] as Accrual[])));
+    ).pipe(
+      catchError(() => of([] as PresentationAccrual[])),
+      map((accruals) => {
+        return accruals.map(
+          (accrual) =>
+            ({
+              ...accrual,
+              totals: getAccrualTotals(accrual),
+              startDateDayjs: dayjs(accrual.startDate, 'YYYYMM')
+                .startOf('month')
+                .add(1, 'day'),
+            } as PresentationAccrual)
+        );
+      })
+    );
   }
 
   createAccrual(
@@ -93,7 +112,7 @@ export class AfAccrualsDataService {
    *            returns an empty string
    */
   private validateAccrual(accrual: Accrual): string {
-    if (accrual.depositProfile.length !== accrual.durationInMonths) {
+    if (accrual.depositSchedule.length !== accrual.durationInMonths) {
       return 'Number of deposits must match accrual duration';
     }
     return '';
