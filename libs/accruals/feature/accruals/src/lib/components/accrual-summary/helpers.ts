@@ -2,7 +2,7 @@ import { PresentationAccrual } from '@tfx-accruals/accruals/util/accruals-types'
 import * as dayjs from 'dayjs';
 
 export const getMessage = (accrual: PresentationAccrual): string => {
-  let message = 'No message'; // TODO - set this back to empty string
+  let message = '';
   if (
     accrual.startDateDayjs
       .add(accrual.durationInMonths - 1, 'month')

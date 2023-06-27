@@ -1,18 +1,13 @@
 import { CommonModule } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  OnInit,
-  inject,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTabsModule } from '@angular/material/tabs';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { AfAccrualsDataService } from '@tfx-accruals/accruals/data-access/af-accruals-data';
 import { CategorisedAccruals } from '@tfx-accruals/accruals/util/accruals-types';
 import * as dayjs from 'dayjs';
-import { Observable, map } from 'rxjs';
-import { AccrualSummaryComponent } from '../components/accrual-summary/accrual-summary.component';
+import { map } from 'rxjs';
+import { AccrualsListComponent } from '../components/accruals-list/accruals-list.component';
 
 @Component({
   selector: 'tfx-accruals',
@@ -21,18 +16,16 @@ import { AccrualSummaryComponent } from '../components/accrual-summary/accrual-s
     CommonModule,
     MatButtonModule,
     MatTabsModule,
-    AccrualSummaryComponent,
+    AccrualsListComponent,
   ],
   templateUrl: './accruals.component.html',
   styleUrls: ['./accruals.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AccrualsComponent implements OnInit {
+export class AccrualsComponent {
   private router = inject(Router);
-  private route = inject(ActivatedRoute);
   private db = inject(AfAccrualsDataService);
 
-  url$!: Observable<string>;
   categorisedAccruals$ = this.db.presentationAccruals$.pipe(
     map((accruals) => {
       const result: CategorisedAccruals = {
@@ -64,12 +57,6 @@ export class AccrualsComponent implements OnInit {
   );
 
   showAddAccrualButton = true;
-
-  ngOnInit(): void {
-    this.url$ = this.route.url.pipe(
-      map((segments) => 'accruals' + segments.join('/'))
-    );
-  }
 
   onCreateAccrual() {
     this.db

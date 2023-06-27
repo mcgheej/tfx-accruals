@@ -1,31 +1,32 @@
-<!-- <pre *ngIf="accruals$ | async as accruals">
-  {{ accruals | json }}
-</pre> -->
-<div *ngIf="url$ | async as url">
+<div>
   <mat-tab-group
     *ngIf="categorisedAccruals$ | async as categorisedAccruals"
     (focusChange)="setShowAddAccrualButton(false)"
     (animationDone)="setShowAddAccrualButton(true)"
   >
-    <mat-tab label="Active Accruals" *ngIf="url === 'accruals'">
-      <div class="w-[600px]">
-        <tfx-accrual-summary
-          [accrual]="categorisedAccruals.activeAccruals[0]"
-        ></tfx-accrual-summary>
-      </div>
+    <mat-tab label="Active Accruals">
+      <tfx-accruals-list
+        [accruals]="categorisedAccruals.activeAccruals"
+        [showAddAccrualButton]="showAddAccrualButton"
+      ></tfx-accruals-list>
     </mat-tab>
-    <mat-tab label="Pending Accruals" *ngIf="url === 'accruals'">
-      <pre>
-        {{ categorisedAccruals.pendingAccruals | json }}
-      </pre>
+    <mat-tab label="Pending Accruals">
+      <tfx-accruals-list
+        [accruals]="categorisedAccruals.pendingAccruals"
+        [showAddAccrualButton]="showAddAccrualButton"
+      ></tfx-accruals-list>
     </mat-tab>
-    <mat-tab label="Expired Accruals" *ngIf="url === 'accruals'">
-      <pre>
-        {{ categorisedAccruals.expiredAccruals | json }}
-      </pre>
+    <mat-tab label="Expired Accruals">
+      <tfx-accruals-list
+        [accruals]="categorisedAccruals.expiredAccruals"
+        [showAddAccrualButton]="showAddAccrualButton"
+      ></tfx-accruals-list>
     </mat-tab>
-    <mat-tab label="Deleted Accruals" *ngIf="url === 'accruals/recycle'">
-      deleted accruals!
+    <mat-tab label="Deleted Accruals">
+      <tfx-accruals-list
+        [accruals]="categorisedAccruals.deletedAccruals"
+        [showAddAccrualButton]="showAddAccrualButton"
+      ></tfx-accruals-list>
     </mat-tab>
   </mat-tab-group>
 </div>
