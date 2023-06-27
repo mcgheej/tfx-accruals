@@ -23,7 +23,7 @@ export const appConfig: ApplicationConfig = {
       provideFirestore(() => getFirestore()),
     ]),
     provideAfAuthentication({
-      urlOnLoggedIn: '/dashboard',
+      urlOnLoggedIn: '/accruals',
       urlOnLoggedOut: '/home',
     }),
   ],

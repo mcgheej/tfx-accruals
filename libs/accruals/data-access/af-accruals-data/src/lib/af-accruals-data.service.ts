@@ -17,7 +17,7 @@ import { AfAuthenticationService } from '@tfx-accruals/shared/util/af-authentica
 import * as dayjs from 'dayjs';
 import { addDoc } from 'firebase/firestore';
 import { Observable, catchError, from, map, of, throwError } from 'rxjs';
-import { getAccrualTotals } from './helpers';
+import { getAccrualTotals, validateAccrual } from './helpers';
 
 @Injectable({ providedIn: 'root' })
 export class AfAccrualsDataService {
@@ -55,7 +55,7 @@ export class AfAccrualsDataService {
   createAccrual(
     newAccrual: Omit<Accrual, 'id'>
   ): Observable<DocumentReference> {
-    const errMessage = this.validateAccrual({
+    const errMessage = validateAccrual({
       ...newAccrual,
       ...{ id: 'temp' },
     });
@@ -70,7 +70,7 @@ export class AfAccrualsDataService {
     updateData: Partial<Accrual>
   ): Observable<void> {
     const modifiedAccrual = { ...currentAccrual, ...updateData };
-    const errMessage = this.validateAccrual(modifiedAccrual);
+    const errMessage = validateAccrual(modifiedAccrual);
     if (errMessage !== '') {
       return throwError(() => new Error(errMessage));
     }
@@ -103,18 +103,5 @@ export class AfAccrualsDataService {
   ): Observable<void> {
     const docRef = doc(this.firestore, `accruals/${id}`);
     return from(updateDoc(docRef, { deleted: deletedFlag }));
-  }
-
-  /**
-   *
-   * @param accrual - Accrual to validate
-   * @returns - if accrual invalid then returns string error message, else
-   *            returns an empty string
-   */
-  private validateAccrual(accrual: Accrual): string {
-    if (accrual.depositSchedule.length !== accrual.durationInMonths) {
-      return 'Number of deposits must match accrual duration';
-    }
-    return '';
   }
 }

@@ -53,7 +53,6 @@ export class AccrualsComponent implements OnInit {
           result.activeAccruals.push(accrual);
         }
       });
-      console.log(result);
       return result;
     })
   );
@@ -64,7 +63,6 @@ export class AccrualsComponent implements OnInit {
     this.url$ = this.route.url.pipe(
       map((segments) => 'accruals' + segments.join('/'))
     );
-    this.url$.subscribe((url) => console.log(url));
   }
 
   onCreateAccrual() {

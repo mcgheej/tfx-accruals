@@ -27,3 +27,16 @@ export const getAccrualTotals = (accrual: Accrual): AccrualTotals => {
   );
   return result;
 };
+
+/**
+ *
+ * @param accrual - Accrual to validate
+ * @returns - if accrual invalid then returns string error message, else
+ *            returns an empty string
+ */
+export const validateAccrual = (accrual: Accrual): string => {
+  if (accrual.depositSchedule.length !== accrual.durationInMonths) {
+    return 'Number of deposits must match accrual duration';
+  }
+  return '';
+};
