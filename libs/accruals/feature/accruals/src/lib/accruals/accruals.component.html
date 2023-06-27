@@ -8,24 +8,28 @@
       <tfx-accruals-list
         [accruals]="categorisedAccruals.activeAccruals"
         [showAddAccrualButton]="showAddAccrualButton"
+        [tabType]="'active'"
       ></tfx-accruals-list>
     </mat-tab>
     <mat-tab label="Pending Accruals">
       <tfx-accruals-list
         [accruals]="categorisedAccruals.pendingAccruals"
         [showAddAccrualButton]="showAddAccrualButton"
+        [tabType]="'pending'"
       ></tfx-accruals-list>
     </mat-tab>
     <mat-tab label="Expired Accruals">
       <tfx-accruals-list
         [accruals]="categorisedAccruals.expiredAccruals"
         [showAddAccrualButton]="showAddAccrualButton"
+        [tabType]="'expired'"
       ></tfx-accruals-list>
     </mat-tab>
     <mat-tab label="Deleted Accruals">
       <tfx-accruals-list
         [accruals]="categorisedAccruals.deletedAccruals"
         [showAddAccrualButton]="showAddAccrualButton"
+        [tabType]="'deleted'"
       ></tfx-accruals-list>
     </mat-tab>
   </mat-tab-group>

@@ -16,8 +16,9 @@
       {{ helper.getMessage(accrual) }}
     </div>
   </div>
-  <div
+  <tfx-accrual-detail
     *ngIf="expandedAccrualId === accrual.id"
-    class="w-full h-10 bg-red-300"
-  ></div>
+    [accrual]="accrual"
+    [tabType]="tabType"
+  ></tfx-accrual-detail>
 </div>

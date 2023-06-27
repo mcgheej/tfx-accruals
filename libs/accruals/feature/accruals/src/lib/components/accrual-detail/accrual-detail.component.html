@@ -1,0 +1,56 @@
+<div class="h-32 w-full grid grid-cols-[1fr,100px]">
+  <!-- accrual data -->
+  <div class="grid grid-cols-[1fr] px-2 py-0 font-light">
+    <div>{{ helpers.getPeriodStatement(accrual) }}</div>
+    <div>
+      {{ helpers.getDepositsStatement(accrual) }}
+    </div>
+    <div class="grid grid-cols-[50px,50px,50px,1fr]">
+      <button
+        *ngIf="tabType === 'active' || tabType === 'pending'"
+        mat-icon-button
+        matTooltip="edit accrual"
+        color="accent"
+      >
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button
+        *ngIf="
+          tabType === 'active' || tabType === 'pending' || tabType === 'expired'
+        "
+        mat-icon-button
+        matTooltip="delete accrual"
+        color="accent"
+      >
+        <mat-icon>delete</mat-icon>
+      </button>
+      <button
+        *ngIf="tabType === 'deleted'"
+        mat-icon-button
+        matTooltip="restore accrual"
+        color="accent"
+      >
+        <mat-icon>restore_from_trash</mat-icon>
+      </button>
+      <button
+        *ngIf="tabType === 'deleted'"
+        mat-icon-button
+        matTooltip="permanently delete accrual"
+        color="accent"
+      >
+        <mat-icon>delete_forever</mat-icon>
+      </button>
+    </div>
+  </div>
+  <!-- accrual progress -->
+  <div class="h-full grid grid-cols-[1fr]">
+    <tfx-progress-donut
+      class="w-20 h-20 ml-4"
+      [value]="accrual.totals.percentageComplete"
+      color="#e91e63"
+    ></tfx-progress-donut>
+    <div class="text-sm w-20 text-center ml-4">
+      {{ accrual.totals.totalSaved | currency : 'GBP' }}
+    </div>
+  </div>
+</div>

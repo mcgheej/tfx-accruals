@@ -7,12 +7,14 @@ import {
   Output,
 } from '@angular/core';
 import { PresentationAccrual } from '@tfx-accruals/accruals/util/accruals-types';
+import { AccrualsTabTypes } from '../../tab-types.type';
+import { AccrualDetailComponent } from '../accrual-detail/accrual-detail.component';
 import * as helper from './helpers';
 
 @Component({
   selector: 'tfx-accrual-summary',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, AccrualDetailComponent],
   templateUrl: './accrual-summary.component.html',
   styleUrls: ['./accrual-summary.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -20,6 +22,7 @@ import * as helper from './helpers';
 export class AccrualSummaryComponent {
   @Input({ required: true }) accrual!: PresentationAccrual;
   @Input({ required: true }) expandedAccrualId = '';
+  @Input({ required: true }) tabType: AccrualsTabTypes = 'active';
   @Output() toggleExpand = new EventEmitter<void>();
 
   helper = helper;
