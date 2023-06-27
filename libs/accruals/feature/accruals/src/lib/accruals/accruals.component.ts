@@ -12,11 +12,17 @@ import { AfAccrualsDataService } from '@tfx-accruals/accruals/data-access/af-acc
 import { CategorisedAccruals } from '@tfx-accruals/accruals/util/accruals-types';
 import * as dayjs from 'dayjs';
 import { Observable, map } from 'rxjs';
+import { AccrualSummaryComponent } from '../components/accrual-summary/accrual-summary.component';
 
 @Component({
   selector: 'tfx-accruals',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, MatTabsModule],
+  imports: [
+    CommonModule,
+    MatButtonModule,
+    MatTabsModule,
+    AccrualSummaryComponent,
+  ],
   templateUrl: './accruals.component.html',
   styleUrls: ['./accruals.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,

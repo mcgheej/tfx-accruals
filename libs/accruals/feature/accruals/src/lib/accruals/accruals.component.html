@@ -8,9 +8,11 @@
     (animationDone)="setShowAddAccrualButton(true)"
   >
     <mat-tab label="Active Accruals" *ngIf="url === 'accruals'">
-      <pre>
-        {{ categorisedAccruals.activeAccruals | json }}
-      </pre>
+      <div class="w-[600px]">
+        <tfx-accrual-summary
+          [accrual]="categorisedAccruals.activeAccruals[0]"
+        ></tfx-accrual-summary>
+      </div>
     </mat-tab>
     <mat-tab label="Pending Accruals" *ngIf="url === 'accruals'">
       <pre>
@@ -27,6 +29,11 @@
     </mat-tab>
   </mat-tab-group>
 </div>
-<button mat-raised-button color="primary" (click)="onCreateAccrual()">
+<button
+  mat-raised-button
+  color="primary"
+  class="m-3"
+  (click)="onCreateAccrual()"
+>
   Create Accrual
 </button>

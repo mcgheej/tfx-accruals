@@ -1,0 +1,19 @@
+<div class="w-full">
+  <div class="grid grid-cols-[1fr,75px] grid-rows-[40px,20px]">
+    <div
+      class="row-start-1 col-start-1 row-end-3 col-end-2 flex items-center justify-start pl-1 select-none"
+    >
+      {{ accrual.name }}
+    </div>
+    <div
+      class="row-start-1 col-start-2 row-end-3 col-end-2 pl-1 flex items-center justify-end"
+    >
+      {{ accrual.targetValue | currency : 'GBP' }}
+    </div>
+    <div
+      class="row-start-2 col-start-1 row-end-3 col-end-3 text-sm text-red-500 pl-1 justify-self-left align-self-center select-none"
+    >
+      {{ helper.getMessage(accrual) }}
+    </div>
+  </div>
+</div>
