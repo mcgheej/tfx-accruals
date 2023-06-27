@@ -2,6 +2,7 @@
   class="my-0 mx-auto w-[90%] sm:w-[600px] grid grid-cols-[1fr] grid-rows-[auto,auto] pt-2"
 >
   <div
+    *ngIf="accruals.length > 0"
     class="w-full grid grid-cols-[1fr,75px] h-14 font-semibold border-b-2 border-slate-400"
   >
     <div class="flex items-center">Name</div>
@@ -19,7 +20,7 @@
   </div>
   <div
     *ngIf="accruals.length === 0"
-    class="w-full h-20 grid grid-cols-[1fr] border-2 border-slate-400"
+    class="w-full mt-2 h-20 grid grid-cols-[1fr] border-2 border-slate-400"
   >
     <div class="my-0 mx-auto flex items-center">No accruals available</div>
   </div>
