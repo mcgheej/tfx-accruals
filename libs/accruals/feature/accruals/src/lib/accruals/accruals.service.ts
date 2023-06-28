@@ -2,7 +2,12 @@ import { Injectable, inject } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AfAccrualsDataService } from '@tfx-accruals/accruals/data-access/af-accruals-data';
-import { PresentationAccrual } from '@tfx-accruals/accruals/util/accruals-types';
+import {
+  CategorisedAccruals,
+  PresentationAccrual,
+} from '@tfx-accruals/accruals/util/accruals-types';
+import * as dayjs from 'dayjs';
+import { map } from 'rxjs';
 import { SnackAccrualDeletedComponent } from '../components/snack-accrual-deleted/snack-accrual-deleted.component';
 import { SnackPermanentDeleteComponent } from '../components/snack-permanent-delete/snack-permanent-delete.component';
 
@@ -11,6 +16,36 @@ export class AccrualsService {
   private router = inject(Router);
   private snackBar = inject(MatSnackBar);
   private db = inject(AfAccrualsDataService);
+
+  categorisedAccruals$ = this.db.presentationAccruals$.pipe(
+    map((accruals) => {
+      const result: CategorisedAccruals = {
+        activeAccruals: [],
+        expiredAccruals: [],
+        pendingAccruals: [],
+        deletedAccruals: [],
+      };
+      accruals.map((accrual) => {
+        const endDate = accrual.startDateDayjs
+          .clone()
+          .add(accrual.durationInMonths, 'month');
+        if (accrual.deleted) {
+          result.deletedAccruals.push(accrual);
+        } else if (
+          endDate.isSameOrBefore(dayjs().startOf('month').add(1, 'day'))
+        ) {
+          result.expiredAccruals.push(accrual);
+        } else if (
+          accrual.startDateDayjs.isAfter(dayjs().startOf('month').add(1, 'day'))
+        ) {
+          result.pendingAccruals.push(accrual);
+        } else {
+          result.activeAccruals.push(accrual);
+        }
+      });
+      return result;
+    })
+  );
 
   addAccrual() {
     this.router.navigateByUrl('/accruals/add');
