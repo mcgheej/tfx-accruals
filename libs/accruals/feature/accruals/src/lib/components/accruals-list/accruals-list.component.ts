@@ -28,6 +28,8 @@ export class AccrualsListComponent {
   @Input({ required: true }) accruals!: PresentationAccrual[];
   @Input({ required: true }) showAddAccrualButton = false;
   @Input({ required: true }) tabType: AccrualsTabTypes = 'active';
+  @Output() addAccrual = new EventEmitter<void>();
+  @Output() editAccrual = new EventEmitter<PresentationAccrual>();
   @Output() deleteAccrual = new EventEmitter<PresentationAccrual>();
   @Output() restoreAccrual = new EventEmitter<PresentationAccrual>();
   @Output() permanentDeleteAccrual = new EventEmitter<PresentationAccrual>();
@@ -36,7 +38,12 @@ export class AccrualsListComponent {
 
   addAccrualClick(ev: MouseEvent) {
     ev.stopPropagation();
-    console.log('add accrual clicked');
+    this.addAccrual.emit();
+  }
+
+  onEditAccrual(accrual: PresentationAccrual) {
+    this.expandedAccrualId = '';
+    this.editAccrual.emit(accrual);
   }
 
   onDeleteAccrual(accrual: PresentationAccrual) {

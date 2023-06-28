@@ -32,11 +32,17 @@ export class AccrualDetailComponent {
 
   @Input({ required: true }) accrual!: PresentationAccrual;
   @Input({ required: true }) tabType: AccrualsTabTypes = 'active';
+  @Output() editAccrual = new EventEmitter<void>();
   @Output() deleteAccrual = new EventEmitter<void>();
   @Output() restoreAccrual = new EventEmitter<void>();
   @Output() permanentDeleteAccrual = new EventEmitter<void>();
 
-  onDeleteAccrualClick(ev: MouseEvent) {
+  onEditAccrual(ev: MouseEvent) {
+    ev.stopPropagation();
+    this.editAccrual.emit();
+  }
+
+  onDeleteAccrual(ev: MouseEvent) {
     ev.stopPropagation();
     this.deleteAccrual.emit();
   }

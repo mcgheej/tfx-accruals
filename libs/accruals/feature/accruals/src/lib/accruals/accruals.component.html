@@ -9,6 +9,8 @@
         [accruals]="categorisedAccruals.activeAccruals"
         [showAddAccrualButton]="showAddAccrualButton"
         [tabType]="'active'"
+        (addAccrual)="onAddAccrual()"
+        (editAccrual)="onEditAccrual($event)"
         (deleteAccrual)="onDeleteAccrual($event)"
       ></tfx-accruals-list>
     </mat-tab>
@@ -17,6 +19,8 @@
         [accruals]="categorisedAccruals.pendingAccruals"
         [showAddAccrualButton]="showAddAccrualButton"
         [tabType]="'pending'"
+        (addAccrual)="onAddAccrual()"
+        (editAccrual)="onEditAccrual($event)"
         (deleteAccrual)="onDeleteAccrual($event)"
       ></tfx-accruals-list>
     </mat-tab>
@@ -25,6 +29,7 @@
         [accruals]="categorisedAccruals.expiredAccruals"
         [showAddAccrualButton]="showAddAccrualButton"
         [tabType]="'expired'"
+        (addAccrual)="onAddAccrual()"
         (deleteAccrual)="onDeleteAccrual($event)"
       ></tfx-accruals-list>
     </mat-tab>
@@ -33,6 +38,7 @@
         [accruals]="categorisedAccruals.deletedAccruals"
         [showAddAccrualButton]="showAddAccrualButton"
         [tabType]="'deleted'"
+        (addAccrual)="onAddAccrual()"
         (restoreAccrual)="onRestoreAccrual($event)"
         (permanentDeleteAccrual)="onPermanentDeleteAccrual($event)"
       ></tfx-accruals-list>

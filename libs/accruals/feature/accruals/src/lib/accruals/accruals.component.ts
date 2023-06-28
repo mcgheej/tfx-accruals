@@ -86,6 +86,14 @@ export class AccrualsComponent {
     this.showAddAccrualButton = flag;
   }
 
+  onAddAccrual() {
+    this.router.navigateByUrl('/accruals/add');
+  }
+
+  onEditAccrual(accrual: PresentationAccrual) {
+    this.router.navigateByUrl(`/accruals/edit/${accrual.id}`);
+  }
+
   onDeleteAccrual(accrual: PresentationAccrual) {
     this.service.deleteAccrual(accrual);
   }

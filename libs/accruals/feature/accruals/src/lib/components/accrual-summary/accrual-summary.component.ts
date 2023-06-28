@@ -23,6 +23,7 @@ export class AccrualSummaryComponent {
   @Input({ required: true }) expandedAccrualId = '';
   @Input({ required: true }) tabType: AccrualsTabTypes = 'active';
   @Output() toggleExpand = new EventEmitter<void>();
+  @Output() editAccrual = new EventEmitter<void>();
   @Output() deleteAccrual = new EventEmitter<void>();
   @Output() restoreAccrual = new EventEmitter<void>();
   @Output() permanentDeleteAccrual = new EventEmitter<void>();
