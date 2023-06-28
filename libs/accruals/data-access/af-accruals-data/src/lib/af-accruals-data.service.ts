@@ -29,7 +29,6 @@ export class AfAccrualsDataService {
   presentationAccruals$: Observable<PresentationAccrual[]>;
 
   constructor() {
-    console.log('constructing data service');
     this.accrualsCollection = collection(this.firestore, 'accruals');
     this.presentationAccruals$ = (
       collectionData(this.accrualsCollection, {

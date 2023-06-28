@@ -6,6 +6,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import {
   provideRouter,
+  withComponentInputBinding,
   withEnabledBlockingInitialNavigation,
 } from '@angular/router';
 import { appRoutes } from '@tfx-accruals/accruals/shell';
@@ -15,7 +16,11 @@ import { provideAfAuthentication } from '@tfx-accruals/shared/util/af-authentica
 export const appConfig: ApplicationConfig = {
   providers: [
     provideAnimations(),
-    provideRouter(appRoutes, withEnabledBlockingInitialNavigation()),
+    provideRouter(
+      appRoutes,
+      withEnabledBlockingInitialNavigation(),
+      withComponentInputBinding()
+    ),
     importProvidersFrom([
       MatSnackBarModule,
       provideFirebaseApp(() => initializeApp(firebaseConfig)),

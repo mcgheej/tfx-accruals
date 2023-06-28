@@ -48,7 +48,7 @@ export class AccrualsService {
   );
 
   addAccrual() {
-    this.router.navigateByUrl('/accruals/add');
+    this.router.navigateByUrl('/accruals/edit');
   }
 
   editAccrual(accrual: PresentationAccrual) {
