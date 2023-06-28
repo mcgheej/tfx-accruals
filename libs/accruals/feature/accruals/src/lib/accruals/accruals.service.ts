@@ -2,7 +2,8 @@ import { Injectable, inject } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AfAccrualsDataService } from '@tfx-accruals/accruals/data-access/af-accruals-data';
 import { PresentationAccrual } from '@tfx-accruals/accruals/util/accruals-types';
-import { AccrualDeletedSnackComponent } from '../components/accrual-deleted-snack/accrual-deleted-snack.component';
+import { SnackAccrualDeletedComponent } from '../components/snack-accrual-deleted/snack-accrual-deleted.component';
+import { SnackPermanentDeleteComponent } from '../components/snack-permanent-delete/snack-permanent-delete.component';
 
 @Injectable()
 export class AccrualsService {
@@ -47,9 +48,21 @@ export class AccrualsService {
     });
   }
 
+  permanentDeleteAccrual(accrual: PresentationAccrual) {
+    this.snackBar
+      .openFromComponent(SnackPermanentDeleteComponent, {
+        duration: 0,
+        verticalPosition: 'bottom',
+      })
+      .onAction()
+      .subscribe({
+        next: () => this.doPermanentDelete(accrual),
+      });
+  }
+
   private undoSnackBar(accrual: PresentationAccrual) {
     this.snackBar
-      .openFromComponent(AccrualDeletedSnackComponent, {
+      .openFromComponent(SnackAccrualDeletedComponent, {
         duration: 10000,
         verticalPosition: 'bottom',
       })
@@ -70,6 +83,20 @@ export class AccrualsService {
           undefined,
           { duration: 5000 }
         );
+      },
+    });
+  }
+
+  private doPermanentDelete(accrual: PresentationAccrual) {
+    this.snackBar.open('Permanently deleting', undefined, { duration: 0 });
+    this.db.permanentlyDeleteAccrual(accrual).subscribe({
+      next: () => {
+        this.snackBar.open(`${accrual.name} permanently deleted`, undefined, {
+          duration: 2000,
+        });
+      },
+      error: (err) => {
+        this.snackBar.open(err.message, undefined, { duration: 2000 });
       },
     });
   }

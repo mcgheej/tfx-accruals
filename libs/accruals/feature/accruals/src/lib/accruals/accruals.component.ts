@@ -25,7 +25,6 @@ import { AccrualsService } from './accruals.service';
     AccrualsListComponent,
   ],
   templateUrl: './accruals.component.html',
-  styleUrls: ['./accruals.component.css'],
   providers: [AccrualsService],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -93,5 +92,9 @@ export class AccrualsComponent {
 
   onRestoreAccrual(accrual: PresentationAccrual) {
     this.service.restoreAccrual(accrual);
+  }
+
+  onPermanentDeleteAccrual(accrual: PresentationAccrual) {
+    this.service.permanentDeleteAccrual(accrual);
   }
 }

@@ -79,7 +79,6 @@ export class AfAccrualsDataService {
   }
 
   deleteAccrual(accrual: Accrual): Observable<void> {
-    console.log(`db.deleteAccrual`);
     return this.setAccrualDeletedFlag(accrual.id, true);
   }
 

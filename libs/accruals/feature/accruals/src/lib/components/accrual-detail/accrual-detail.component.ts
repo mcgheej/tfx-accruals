@@ -34,6 +34,7 @@ export class AccrualDetailComponent {
   @Input({ required: true }) tabType: AccrualsTabTypes = 'active';
   @Output() deleteAccrual = new EventEmitter<void>();
   @Output() restoreAccrual = new EventEmitter<void>();
+  @Output() permanentDeleteAccrual = new EventEmitter<void>();
 
   onDeleteAccrualClick(ev: MouseEvent) {
     ev.stopPropagation();
@@ -43,5 +44,10 @@ export class AccrualDetailComponent {
   onRestoreAccrual(ev: MouseEvent) {
     ev.stopPropagation();
     this.restoreAccrual.emit();
+  }
+
+  onPermanentDelete(ev: MouseEvent) {
+    ev.stopPropagation();
+    this.permanentDeleteAccrual.emit();
   }
 }

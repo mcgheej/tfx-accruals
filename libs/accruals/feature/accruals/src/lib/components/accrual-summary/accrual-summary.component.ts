@@ -16,7 +16,6 @@ import * as helper from './helpers';
   standalone: true,
   imports: [CommonModule, AccrualDetailComponent],
   templateUrl: './accrual-summary.component.html',
-  styleUrls: ['./accrual-summary.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AccrualSummaryComponent {
@@ -26,6 +25,7 @@ export class AccrualSummaryComponent {
   @Output() toggleExpand = new EventEmitter<void>();
   @Output() deleteAccrual = new EventEmitter<void>();
   @Output() restoreAccrual = new EventEmitter<void>();
+  @Output() permanentDeleteAccrual = new EventEmitter<void>();
 
   helper = helper;
 

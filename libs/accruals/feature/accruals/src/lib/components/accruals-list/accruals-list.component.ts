@@ -22,7 +22,6 @@ import { AccrualSummaryComponent } from '../accrual-summary/accrual-summary.comp
     AccrualSummaryComponent,
   ],
   templateUrl: './accruals-list.component.html',
-  styleUrls: ['./accruals-list.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AccrualsListComponent {
@@ -31,6 +30,7 @@ export class AccrualsListComponent {
   @Input({ required: true }) tabType: AccrualsTabTypes = 'active';
   @Output() deleteAccrual = new EventEmitter<PresentationAccrual>();
   @Output() restoreAccrual = new EventEmitter<PresentationAccrual>();
+  @Output() permanentDeleteAccrual = new EventEmitter<PresentationAccrual>();
 
   expandedAccrualId = '';
 
@@ -47,6 +47,11 @@ export class AccrualsListComponent {
   onRestoreAccrual(accrual: PresentationAccrual) {
     this.expandedAccrualId = '';
     this.restoreAccrual.emit(accrual);
+  }
+
+  onPermanentDeleteAccrual(accrual: PresentationAccrual) {
+    this.expandedAccrualId = '';
+    this.permanentDeleteAccrual.emit(accrual);
   }
 
   onToggleExpand(accrual: PresentationAccrual) {
