@@ -1,5 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { AfAccrualsDataService } from '@tfx-accruals/accruals/data-access/af-accruals-data';
 import { PresentationAccrual } from '@tfx-accruals/accruals/util/accruals-types';
 import { SnackAccrualDeletedComponent } from '../components/snack-accrual-deleted/snack-accrual-deleted.component';
@@ -7,15 +8,18 @@ import { SnackPermanentDeleteComponent } from '../components/snack-permanent-del
 
 @Injectable()
 export class AccrualsService {
+  private router = inject(Router);
   private snackBar = inject(MatSnackBar);
   private db = inject(AfAccrualsDataService);
 
-  /**
-   * Method that sets the accrual's deleted flag to true
-   *
-   * @param accrual accrual to flag as deleted
-   *
-   */
+  addAccrual() {
+    this.router.navigateByUrl('/accruals/add');
+  }
+
+  editAccrual(accrual: PresentationAccrual) {
+    this.router.navigateByUrl(`/accruals/edit/${accrual.id}`);
+  }
+
   deleteAccrual(accrual: PresentationAccrual) {
     this.snackBar.open('Deleting...', undefined, { duration: 0 });
     this.db.deleteAccrual(accrual).subscribe({

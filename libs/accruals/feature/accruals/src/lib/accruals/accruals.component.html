@@ -9,9 +9,9 @@
         [accruals]="categorisedAccruals.activeAccruals"
         [showAddAccrualButton]="showAddAccrualButton"
         [tabType]="'active'"
-        (addAccrual)="onAddAccrual()"
-        (editAccrual)="onEditAccrual($event)"
-        (deleteAccrual)="onDeleteAccrual($event)"
+        (addAccrual)="service.addAccrual()"
+        (editAccrual)="service.editAccrual($event)"
+        (deleteAccrual)="service.deleteAccrual($event)"
       ></tfx-accruals-list>
     </mat-tab>
     <mat-tab label="Pending Accruals">
@@ -19,9 +19,9 @@
         [accruals]="categorisedAccruals.pendingAccruals"
         [showAddAccrualButton]="showAddAccrualButton"
         [tabType]="'pending'"
-        (addAccrual)="onAddAccrual()"
-        (editAccrual)="onEditAccrual($event)"
-        (deleteAccrual)="onDeleteAccrual($event)"
+        (addAccrual)="service.addAccrual()"
+        (editAccrual)="service.editAccrual($event)"
+        (deleteAccrual)="service.deleteAccrual($event)"
       ></tfx-accruals-list>
     </mat-tab>
     <mat-tab label="Expired Accruals">
@@ -29,8 +29,8 @@
         [accruals]="categorisedAccruals.expiredAccruals"
         [showAddAccrualButton]="showAddAccrualButton"
         [tabType]="'expired'"
-        (addAccrual)="onAddAccrual()"
-        (deleteAccrual)="onDeleteAccrual($event)"
+        (addAccrual)="service.addAccrual()"
+        (deleteAccrual)="service.deleteAccrual($event)"
       ></tfx-accruals-list>
     </mat-tab>
     <mat-tab label="Deleted Accruals">
@@ -38,18 +38,10 @@
         [accruals]="categorisedAccruals.deletedAccruals"
         [showAddAccrualButton]="showAddAccrualButton"
         [tabType]="'deleted'"
-        (addAccrual)="onAddAccrual()"
-        (restoreAccrual)="onRestoreAccrual($event)"
-        (permanentDeleteAccrual)="onPermanentDeleteAccrual($event)"
+        (addAccrual)="service.addAccrual()"
+        (restoreAccrual)="service.restoreAccrual($event)"
+        (permanentDeleteAccrual)="service.permanentDeleteAccrual($event)"
       ></tfx-accruals-list>
     </mat-tab>
   </mat-tab-group>
 </div>
-<button
-  mat-raised-button
-  color="primary"
-  class="m-3"
-  (click)="onCreateAccrual()"
->
-  Create Accrual
-</button>

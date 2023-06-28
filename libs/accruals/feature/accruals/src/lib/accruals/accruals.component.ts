@@ -3,12 +3,8 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
-import { Router } from '@angular/router';
 import { AfAccrualsDataService } from '@tfx-accruals/accruals/data-access/af-accruals-data';
-import {
-  CategorisedAccruals,
-  PresentationAccrual,
-} from '@tfx-accruals/accruals/util/accruals-types';
+import { CategorisedAccruals } from '@tfx-accruals/accruals/util/accruals-types';
 import * as dayjs from 'dayjs';
 import { map } from 'rxjs';
 import { AccrualsListComponent } from '../components/accruals-list/accruals-list.component';
@@ -29,9 +25,8 @@ import { AccrualsService } from './accruals.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AccrualsComponent {
-  private router = inject(Router);
   private db = inject(AfAccrualsDataService);
-  private service = inject(AccrualsService);
+  service = inject(AccrualsService);
 
   categorisedAccruals$ = this.db.presentationAccruals$.pipe(
     map((accruals) => {
@@ -65,44 +60,7 @@ export class AccrualsComponent {
 
   showAddAccrualButton = true;
 
-  onCreateAccrual() {
-    this.db
-      .createAccrual({
-        name: 'Test2',
-        description: '',
-        startValue: 0,
-        targetValue: 100,
-        startDate: '202306',
-        durationInMonths: 10,
-        depositSchedule: [10, 10, 10, 10, 10, 10, 10, 10, 10, 10],
-        deleted: false,
-      })
-      .subscribe({
-        error: (err: Error) => console.log(err.message),
-      });
-  }
-
   setShowAddAccrualButton(flag: boolean) {
     this.showAddAccrualButton = flag;
-  }
-
-  onAddAccrual() {
-    this.router.navigateByUrl('/accruals/add');
-  }
-
-  onEditAccrual(accrual: PresentationAccrual) {
-    this.router.navigateByUrl(`/accruals/edit/${accrual.id}`);
-  }
-
-  onDeleteAccrual(accrual: PresentationAccrual) {
-    this.service.deleteAccrual(accrual);
-  }
-
-  onRestoreAccrual(accrual: PresentationAccrual) {
-    this.service.restoreAccrual(accrual);
-  }
-
-  onPermanentDeleteAccrual(accrual: PresentationAccrual) {
-    this.service.permanentDeleteAccrual(accrual);
   }
 }
