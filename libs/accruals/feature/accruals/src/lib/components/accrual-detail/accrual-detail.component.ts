@@ -25,7 +25,6 @@ import * as helpers from './helpers';
     TfxProgressDonutComponent,
   ],
   templateUrl: './accrual-detail.component.html',
-  styleUrls: ['./accrual-detail.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AccrualDetailComponent {
@@ -34,9 +33,15 @@ export class AccrualDetailComponent {
   @Input({ required: true }) accrual!: PresentationAccrual;
   @Input({ required: true }) tabType: AccrualsTabTypes = 'active';
   @Output() deleteAccrual = new EventEmitter<void>();
+  @Output() restoreAccrual = new EventEmitter<void>();
 
   onDeleteAccrualClick(ev: MouseEvent) {
     ev.stopPropagation();
     this.deleteAccrual.emit();
+  }
+
+  onRestoreAccrual(ev: MouseEvent) {
+    ev.stopPropagation();
+    this.restoreAccrual.emit();
   }
 }

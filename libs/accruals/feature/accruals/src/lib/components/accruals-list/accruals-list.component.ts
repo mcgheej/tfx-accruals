@@ -30,6 +30,7 @@ export class AccrualsListComponent {
   @Input({ required: true }) showAddAccrualButton = false;
   @Input({ required: true }) tabType: AccrualsTabTypes = 'active';
   @Output() deleteAccrual = new EventEmitter<PresentationAccrual>();
+  @Output() restoreAccrual = new EventEmitter<PresentationAccrual>();
 
   expandedAccrualId = '';
 
@@ -41,6 +42,11 @@ export class AccrualsListComponent {
   onDeleteAccrual(accrual: PresentationAccrual) {
     this.expandedAccrualId = '';
     this.deleteAccrual.emit(accrual);
+  }
+
+  onRestoreAccrual(accrual: PresentationAccrual) {
+    this.expandedAccrualId = '';
+    this.restoreAccrual.emit(accrual);
   }
 
   onToggleExpand(accrual: PresentationAccrual) {

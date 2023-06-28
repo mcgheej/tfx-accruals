@@ -33,6 +33,7 @@
         [accruals]="categorisedAccruals.deletedAccruals"
         [showAddAccrualButton]="showAddAccrualButton"
         [tabType]="'deleted'"
+        (restoreAccrual)="onRestoreAccrual($event)"
       ></tfx-accruals-list>
     </mat-tab>
   </mat-tab-group>

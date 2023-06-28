@@ -22,7 +22,27 @@ export class AccrualsService {
         this.undoSnackBar(accrual);
       },
       error: (err) => {
-        this.snackBar.open(err.message, undefined, { duration: 2000 });
+        this.snackBar.open(`Delete failed - ${err.message}`, undefined, {
+          duration: 2000,
+        });
+      },
+    });
+  }
+
+  restoreAccrual(accrual: PresentationAccrual) {
+    this.snackBar.open('Restoring...', undefined, { duration: 0 });
+    this.db.recoverAccrual(accrual).subscribe({
+      next: () => {
+        this.snackBar.open(`Accrual ${accrual.name} restored`, undefined, {
+          duration: 2000,
+        });
+      },
+      error: (err) => {
+        this.snackBar.open(
+          `Restore accrual ${accrual.name} failed - ${err.message}`,
+          undefined,
+          { duration: 5000 }
+        );
       },
     });
   }
@@ -46,7 +66,7 @@ export class AccrualsService {
         this.snackBar.open('Delete undone', undefined, { duration: 2000 }),
       error: (err) => {
         this.snackBar.open(
-          `Undo delete of ${accrual.name} failed - ${err}`,
+          `Undo delete of ${accrual.name} failed - ${err.message}`,
           undefined,
           { duration: 5000 }
         );

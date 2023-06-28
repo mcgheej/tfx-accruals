@@ -90,4 +90,8 @@ export class AccrualsComponent {
   onDeleteAccrual(accrual: PresentationAccrual) {
     this.service.deleteAccrual(accrual);
   }
+
+  onRestoreAccrual(accrual: PresentationAccrual) {
+    this.service.restoreAccrual(accrual);
+  }
 }
