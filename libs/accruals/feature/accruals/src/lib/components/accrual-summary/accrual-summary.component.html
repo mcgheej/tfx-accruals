@@ -20,5 +20,6 @@
     *ngIf="expandedAccrualId === accrual.id"
     [accrual]="accrual"
     [tabType]="tabType"
+    (deleteAccrual)="deleteAccrual.emit()"
   ></tfx-accrual-detail>
 </div>

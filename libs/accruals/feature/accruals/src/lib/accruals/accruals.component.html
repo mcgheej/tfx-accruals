@@ -9,6 +9,7 @@
         [accruals]="categorisedAccruals.activeAccruals"
         [showAddAccrualButton]="showAddAccrualButton"
         [tabType]="'active'"
+        (deleteAccrual)="onDeleteAccrual($event)"
       ></tfx-accruals-list>
     </mat-tab>
     <mat-tab label="Pending Accruals">
@@ -16,6 +17,7 @@
         [accruals]="categorisedAccruals.pendingAccruals"
         [showAddAccrualButton]="showAddAccrualButton"
         [tabType]="'pending'"
+        (deleteAccrual)="onDeleteAccrual($event)"
       ></tfx-accruals-list>
     </mat-tab>
     <mat-tab label="Expired Accruals">
@@ -23,6 +25,7 @@
         [accruals]="categorisedAccruals.expiredAccruals"
         [showAddAccrualButton]="showAddAccrualButton"
         [tabType]="'expired'"
+        (deleteAccrual)="onDeleteAccrual($event)"
       ></tfx-accruals-list>
     </mat-tab>
     <mat-tab label="Deleted Accruals">

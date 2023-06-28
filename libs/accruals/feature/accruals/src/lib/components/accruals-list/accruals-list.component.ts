@@ -1,5 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { PresentationAccrual } from '@tfx-accruals/accruals/util/accruals-types';
@@ -23,12 +29,18 @@ export class AccrualsListComponent {
   @Input({ required: true }) accruals!: PresentationAccrual[];
   @Input({ required: true }) showAddAccrualButton = false;
   @Input({ required: true }) tabType: AccrualsTabTypes = 'active';
+  @Output() deleteAccrual = new EventEmitter<PresentationAccrual>();
 
   expandedAccrualId = '';
 
   addAccrualClick(ev: MouseEvent) {
     ev.stopPropagation();
     console.log('add accrual clicked');
+  }
+
+  onDeleteAccrual(accrual: PresentationAccrual) {
+    this.expandedAccrualId = '';
+    this.deleteAccrual.emit(accrual);
   }
 
   onToggleExpand(accrual: PresentationAccrual) {

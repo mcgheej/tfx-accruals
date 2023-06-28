@@ -1,5 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -27,4 +33,10 @@ export class AccrualDetailComponent {
 
   @Input({ required: true }) accrual!: PresentationAccrual;
   @Input({ required: true }) tabType: AccrualsTabTypes = 'active';
+  @Output() deleteAccrual = new EventEmitter<void>();
+
+  onDeleteAccrualClick(ev: MouseEvent) {
+    ev.stopPropagation();
+    this.deleteAccrual.emit();
+  }
 }
