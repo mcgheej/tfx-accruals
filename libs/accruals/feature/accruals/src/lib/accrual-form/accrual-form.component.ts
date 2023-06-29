@@ -19,6 +19,17 @@ import { PresentationAccrual } from '@tfx-accruals/accruals/util/accruals-types'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AccrualFormComponent implements OnInit {
+  /**
+   * The following inputs are bound to the routes targeting this component
+   * through Component Input Binding.
+   *
+   * id:      this is bound to the path param /:id from the path "accruals/edit/:id"
+   * accrual: this is bound to output of a resolver that gets the accrual
+   *          object associated with the id in the path "accruals/edit/:id"
+   *
+   * The other path that routes to this component is "accruals/add". In this case
+   * both the component properties will be undefined.
+   */
   @Input() id?: string;
   @Input() accrual?: PresentationAccrual;
 
