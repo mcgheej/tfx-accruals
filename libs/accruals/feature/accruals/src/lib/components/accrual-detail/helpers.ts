@@ -1,5 +1,11 @@
 import { PresentationAccrual } from '@tfx-accruals/accruals/util/accruals-types';
-import * as dayjs from 'dayjs';
+import {
+  addMonths,
+  differenceInCalendarMonths,
+  format,
+  parse,
+  startOfMonth,
+} from 'date-fns';
 
 export const getDepositsStatement = (accrual: PresentationAccrual): string => {
   const numberOfDeposits = accrual.depositSchedule.length;
@@ -21,17 +27,20 @@ export const getDepositsStatement = (accrual: PresentationAccrual): string => {
 };
 
 export const getPeriodStatement = (accrual: PresentationAccrual): string => {
+  console.log('hello');
   let result = '';
-  const startDate = dayjs(accrual.startDate, 'YYYYMM').startOf('month');
-  const endDate = startDate
-    .clone()
-    .add(accrual.durationInMonths - 1, 'month')
-    .startOf('month');
-  startDate.isBefore(dayjs().startOf('month'))
-    ? (result = `Saving started ${startDate.format('MMM YYYY')} `)
-    : (result = `Saving starts ${startDate.format('MMM YYYY')} `);
-  endDate.isBefore(dayjs().startOf('month'))
-    ? (result += `and ended ${endDate.format('MMM YYYY')}`)
-    : (result += `and ends ${endDate.format('MMM YYYY')}`);
+  const startOfThisMonth = startOfMonth(new Date());
+  const startDate = startOfMonth(
+    parse(accrual.startDate, 'yyyyMM', new Date())
+  );
+  const lastDepositDate = addMonths(startDate, accrual.durationInMonths - 1);
+  const diff1 = differenceInCalendarMonths(startOfThisMonth, startDate);
+  const diff2 = differenceInCalendarMonths(startOfThisMonth, lastDepositDate);
+  differenceInCalendarMonths(startOfThisMonth, startDate) >= 0
+    ? (result = `Deposits started ${format(startDate, 'MMM yyyy')} `)
+    : (result = `Deposits start ${format(startDate, 'MMM yyyy')} `);
+  differenceInCalendarMonths(startOfThisMonth, lastDepositDate) > 0
+    ? (result += `and ended ${format(lastDepositDate, 'MMM yyyy')}`)
+    : (result += `and end ${format(lastDepositDate, 'MMM yyyy')}`);
   return result;
 };

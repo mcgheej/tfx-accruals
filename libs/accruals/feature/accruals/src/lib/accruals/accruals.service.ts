@@ -6,7 +6,12 @@ import {
   CategorisedAccruals,
   PresentationAccrual,
 } from '@tfx-accruals/accruals/util/accruals-types';
-import * as dayjs from 'dayjs';
+import {
+  addMonths,
+  differenceInCalendarMonths,
+  parse,
+  startOfMonth,
+} from 'date-fns';
 import { map } from 'rxjs';
 import { SnackAccrualDeletedComponent } from '../components/snack-accrual-deleted/snack-accrual-deleted.component';
 import { SnackPermanentDeleteComponent } from '../components/snack-permanent-delete/snack-permanent-delete.component';
@@ -26,18 +31,14 @@ export class AccrualsService {
         deletedAccruals: [],
       };
       accruals.map((accrual) => {
-        const endDate = accrual.startDateDayjs
-          .clone()
-          .add(accrual.durationInMonths, 'month');
+        const thisMonth = startOfMonth(new Date());
+        const startDate = parse(accrual.startDate, 'yyyyMM', thisMonth);
+        const withdrawalDate = addMonths(startDate, accrual.durationInMonths);
         if (accrual.deleted) {
           result.deletedAccruals.push(accrual);
-        } else if (
-          endDate.isSameOrBefore(dayjs().startOf('month').add(1, 'day'))
-        ) {
+        } else if (differenceInCalendarMonths(thisMonth, withdrawalDate) > 0) {
           result.expiredAccruals.push(accrual);
-        } else if (
-          accrual.startDateDayjs.isAfter(dayjs().startOf('month').add(1, 'day'))
-        ) {
+        } else if (differenceInCalendarMonths(startDate, thisMonth) > 0) {
           result.pendingAccruals.push(accrual);
         } else {
           result.activeAccruals.push(accrual);

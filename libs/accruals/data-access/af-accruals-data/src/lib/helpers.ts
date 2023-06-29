@@ -2,22 +2,50 @@ import {
   Accrual,
   AccrualTotals,
 } from '@tfx-accruals/accruals/util/accruals-types';
-import * as dayjs from 'dayjs';
-import * as isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
+import {
+  addMonths,
+  differenceInCalendarMonths,
+  parse,
+  startOfMonth,
+} from 'date-fns';
+
+// export const getAccrualTotals = (accrual: Accrual): AccrualTotals => {
+//   const result = {
+//     percentageComplete: 0,
+//     totalSaved: 0,
+//   } as AccrualTotals;
+//   dayjs.extend(isSameOrBefore);
+
+//   const thisMonth = dayjs().startOf('month');
+//   let paymentDate = dayjs(accrual.startDate, 'YYYYMM').startOf('month');
+//   for (let i = 0; i < accrual.depositSchedule.length; i++) {
+//     if (paymentDate.isSameOrBefore(thisMonth, 'month')) {
+//       result.totalSaved += accrual.depositSchedule[i];
+//       paymentDate = paymentDate.add(1, 'month');
+//     } else {
+//       break;
+//     }
+//   }
+//   result.percentageComplete = Math.round(
+//     (result.totalSaved / accrual.targetValue) * 100
+//   );
+//   return result;
+// };
 
 export const getAccrualTotals = (accrual: Accrual): AccrualTotals => {
   const result = {
     percentageComplete: 0,
     totalSaved: 0,
   } as AccrualTotals;
-  dayjs.extend(isSameOrBefore);
 
-  const thisMonth = dayjs().startOf('month');
-  let paymentDate = dayjs(accrual.startDate, 'YYYYMM').startOf('month');
+  const thisMonth = startOfMonth(new Date());
+  let paymentDate = startOfMonth(
+    parse(accrual.startDate, 'yyyyMM', new Date())
+  );
   for (let i = 0; i < accrual.depositSchedule.length; i++) {
-    if (paymentDate.isSameOrBefore(thisMonth, 'month')) {
+    if (differenceInCalendarMonths(paymentDate, thisMonth) <= 0) {
       result.totalSaved += accrual.depositSchedule[i];
-      paymentDate = paymentDate.add(1, 'month');
+      paymentDate = addMonths(paymentDate, 1);
     } else {
       break;
     }
