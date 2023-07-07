@@ -33,39 +33,21 @@
             [(ngModel)]="vmAccrual.description"
           ></textarea>
         </mat-form-field>
-        <div class="flex gap-1">
-          <mat-form-field class="w-full mt-4" appearance="outline">
-            <mat-label for="startValue">Start Value</mat-label>
-            <input
-              matInput
-              type="number"
-              id="startValue"
-              name="startValue"
-              min="0"
-              [max]="vmAccrual.targetValue"
-              [(ngModel)]="vmAccrual.startValue"
-              #startValue="ngModel"
-            />
-            <mat-error *ngIf="startValue.invalid"
-              >Start value can't be greater than target value</mat-error
-            >
-          </mat-form-field>
-          <mat-form-field class="w-full mt-4" appearance="outline">
-            <mat-label for="targetValue">Target Value</mat-label>
-            <input
-              matInput
-              type="number"
-              id="targetValue"
-              name="targetValue"
-              [min]="vmAccrual.startValue"
-              [(ngModel)]="vmAccrual.targetValue"
-              #targetValue="ngModel"
-            />
-            <mat-error *ngIf="targetValue.invalid"
-              >Target value can't be less than start value</mat-error
-            >
-          </mat-form-field>
-        </div>
+        <mat-form-field class="w-1/3 mt-4" appearance="outline">
+          <mat-label for="targetValue">Target Value (£)</mat-label>
+          <input
+            matInput
+            type="number"
+            id="targetValue"
+            name="targetValue"
+            min="50"
+            [(ngModel)]="vmAccrual.targetValue"
+            #targetValue="ngModel"
+          />
+          <mat-error *ngIf="targetValue.invalid"
+            >Target value can't be less than £50</mat-error
+          >
+        </mat-form-field>
         <div class="flex gap-1">
           <mat-form-field class="w-full mt-4" appearance="outline">
             <mat-label for="startDate">Start Date</mat-label>

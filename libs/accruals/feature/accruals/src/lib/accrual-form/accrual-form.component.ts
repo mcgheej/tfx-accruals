@@ -116,7 +116,7 @@ export class AccrualFormComponent {
   private getDepositSchedule(vmAccrual: VMAccrual): number[] {
     const schedule: number[] = [];
     const duration = vmAccrual.durationInMonths;
-    const total = vmAccrual.targetValue - vmAccrual.startValue;
+    const total = vmAccrual.targetValue;
     const deposit = Math.round((total / duration) * 100) / 100;
     const finalDeposit =
       Math.round((total - deposit * (duration - 1)) * 100) / 100;

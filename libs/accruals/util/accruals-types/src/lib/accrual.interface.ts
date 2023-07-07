@@ -10,9 +10,6 @@
  * description:       fuller description of the accrual, e.g. 'Annually
  * (string)           recurring insurance premium'.
  *
- * startValue:        initial sum deposited for the accrual, usually zero.
- * (number)
- *
  * targetValue:       target sum that needs to be accrued
  * (number)
  *
@@ -34,7 +31,6 @@ export interface Accrual {
   id: string;
   name: string;
   description: string;
-  startValue: number;
   targetValue: number;
   startDate: string;
   durationInMonths: number;

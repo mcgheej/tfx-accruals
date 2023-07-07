@@ -34,7 +34,6 @@ export const accrualFormResolver: ResolveFn<VMAccrual> = (
         id: '',
         name: '',
         description: '',
-        startValue: 0,
         targetValue: 120,
         startDate: format(startOfThisMonth, 'yyyyMM'),
         durationInMonths: 12,
