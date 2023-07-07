@@ -104,12 +104,9 @@ export class AccrualFormComponent {
 
   private vmToAccrualData(vmAccrual: VMAccrual): Omit<Accrual, 'id'> {
     vmAccrual.depositSchedule = this.getDepositSchedule(vmAccrual);
-    const {
-      id: _,
-      totals: __,
-      firstDepositDate: ___,
-      ...accrualData
-    } = vmAccrual;
+    /* eslint-disable @typescript-eslint/no-unused-vars */
+    const { id, totals, firstDepositDate, ...accrualData } = vmAccrual;
+    /* eslint-enable @typescript-eslint/no-unused-vars */
     return accrualData as Omit<Accrual, 'id'>;
   }
 
