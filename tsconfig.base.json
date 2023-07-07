@@ -33,6 +33,9 @@
       "@tfx-accruals/accruals/feature/register": [
         "libs/accruals/feature/register/src/index.ts"
       ],
+      "@tfx-accruals/accruals/feature/statements": [
+        "libs/accruals/feature/statements/src/index.ts"
+      ],
       "@tfx-accruals/accruals/shell": ["libs/accruals/shell/src/index.ts"],
       "@tfx-accruals/accruals/util/accruals-types": [
         "libs/accruals/util/accruals-types/src/index.ts"

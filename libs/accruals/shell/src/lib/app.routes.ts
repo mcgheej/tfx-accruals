@@ -18,6 +18,13 @@ export const appRoutes: Route[] = [
       ),
   },
   {
+    path: 'statements',
+    loadChildren: () =>
+      import('@tfx-accruals/accruals/feature/statements').then(
+        (m) => m.statementsRoutes
+      ),
+  },
+  {
     path: 'dashboard',
     loadChildren: () =>
       import('@tfx-accruals/accruals/feature/dashboard').then(
