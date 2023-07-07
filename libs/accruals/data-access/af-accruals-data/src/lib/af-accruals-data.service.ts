@@ -14,7 +14,7 @@ import {
   PresentationAccrual,
 } from '@tfx-accruals/accruals/util/accruals-types';
 import { AfAuthenticationService } from '@tfx-accruals/shared/util/af-authentication';
-import { addDoc } from 'firebase/firestore';
+import { addDoc, orderBy, query } from 'firebase/firestore';
 import { Observable, catchError, from, map, of, throwError } from 'rxjs';
 import { getAccrualTotals, validateAccrual } from './helpers';
 
@@ -29,8 +29,9 @@ export class AfAccrualsDataService {
 
   constructor() {
     this.accrualsCollection = collection(this.firestore, 'accruals');
+    const q = query(this.accrualsCollection, ...[orderBy('startDate')]);
     this.presentationAccruals$ = (
-      collectionData(this.accrualsCollection, {
+      collectionData(q, {
         idField: 'id',
       }) as Observable<Accrual[]>
     ).pipe(
