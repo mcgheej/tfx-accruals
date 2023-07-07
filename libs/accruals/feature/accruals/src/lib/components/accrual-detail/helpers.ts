@@ -27,15 +27,12 @@ export const getDepositsStatement = (accrual: PresentationAccrual): string => {
 };
 
 export const getPeriodStatement = (accrual: PresentationAccrual): string => {
-  console.log('hello');
   let result = '';
   const startOfThisMonth = startOfMonth(new Date());
   const startDate = startOfMonth(
     parse(accrual.startDate, 'yyyyMM', new Date())
   );
   const lastDepositDate = addMonths(startDate, accrual.durationInMonths - 1);
-  const diff1 = differenceInCalendarMonths(startOfThisMonth, startDate);
-  const diff2 = differenceInCalendarMonths(startOfThisMonth, lastDepositDate);
   differenceInCalendarMonths(startOfThisMonth, startDate) >= 0
     ? (result = `Deposits started ${format(startDate, 'MMM yyyy')} `)
     : (result = `Deposits start ${format(startDate, 'MMM yyyy')} `);

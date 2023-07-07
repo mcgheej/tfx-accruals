@@ -1,8 +1,119 @@
-<button
-  mat-raised-button
-  color="primary"
-  class="m-3"
-  (click)="onCreateAccrual()"
->
-  Create Accrual
-</button>
+<div class="flex justify-center">
+  <div
+    class="w-full min-w-[310px] max-w-lg h-auto px-8 py-6 mt-4 bg-white shadow-lg"
+  >
+    <h3 class="text-2xl font-bold text-center">
+      {{ vmAccrual.id ? 'Edit Accrual' : 'Create Accrual' }}
+    </h3>
+    <div class="flex justify-center">
+      <form #form="ngForm" class="w-full" (ngSubmit)="onSubmit()">
+        <mat-form-field class="w-full mt-4" appearance="outline">
+          <mat-label for="name">Name</mat-label>
+          <input
+            matInput
+            type="text"
+            id="name"
+            name="name"
+            required
+            [(ngModel)]="vmAccrual.name"
+            #name="ngModel"
+          />
+          <mat-error *ngIf="name.invalid && name.touched"
+            >Name is required</mat-error
+          >
+        </mat-form-field>
+        <mat-form-field class="w-full mt-4" appearance="outline">
+          <mat-label for="description">Description</mat-label>
+          <textarea
+            style="resize: none"
+            matInput
+            id="description"
+            name="description"
+            rows="4"
+            [(ngModel)]="vmAccrual.description"
+          ></textarea>
+        </mat-form-field>
+        <div class="flex gap-1">
+          <mat-form-field class="w-full mt-4" appearance="outline">
+            <mat-label for="startValue">Start Value</mat-label>
+            <input
+              matInput
+              type="number"
+              id="startValue"
+              name="startValue"
+              min="0"
+              [max]="vmAccrual.targetValue"
+              [(ngModel)]="vmAccrual.startValue"
+              #startValue="ngModel"
+            />
+            <mat-error *ngIf="startValue.invalid"
+              >Start value can't be greater than target value</mat-error
+            >
+          </mat-form-field>
+          <mat-form-field class="w-full mt-4" appearance="outline">
+            <mat-label for="targetValue">Target Value</mat-label>
+            <input
+              matInput
+              type="number"
+              id="targetValue"
+              name="targetValue"
+              [min]="vmAccrual.startValue"
+              [(ngModel)]="vmAccrual.targetValue"
+              #targetValue="ngModel"
+            />
+            <mat-error *ngIf="targetValue.invalid"
+              >Target value can't be less than start value</mat-error
+            >
+          </mat-form-field>
+        </div>
+        <div class="flex gap-1">
+          <mat-form-field class="w-full mt-4" appearance="outline">
+            <mat-label for="startDate">Start Date</mat-label>
+            <input
+              matInput
+              [matDatepicker]="dp"
+              id="firstDepositDate"
+              name="firstDepositDate"
+              [(ngModel)]="vmAccrual.firstDepositDate"
+            />
+            <mat-hint>MM/YYYY</mat-hint>
+            <mat-datepicker-toggle
+              matIconSuffix
+              [for]="dp"
+            ></mat-datepicker-toggle>
+            <mat-datepicker
+              #dp
+              startView="multi-year"
+              (monthSelected)="setMonthAndYear($event, dp)"
+            ></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field class="w-full mt-4" appearance="outline">
+            <mat-label for="durationInMonths">Duration (months)</mat-label>
+            <input
+              matInput
+              type="number"
+              id="durationInMonths"
+              name="durationInMonths"
+              min="3"
+              max="60"
+              [(ngModel)]="vmAccrual.durationInMonths"
+              #durationInMonths="ngModel"
+            />
+            <mat-error *ngIf="durationInMonths.invalid"
+              >Must be between 3 and 60 months</mat-error
+            >
+          </mat-form-field>
+        </div>
+        <button
+          class="mt-4"
+          mat-raised-button
+          type="submit"
+          [disabled]="form.invalid"
+          color="primary"
+        >
+          Save
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

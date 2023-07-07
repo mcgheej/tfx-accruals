@@ -52,7 +52,7 @@ export class AfAccrualsDataService {
   ): Observable<DocumentReference> {
     const errMessage = validateAccrual({
       ...newAccrual,
-      ...{ id: 'temp' },
+      ...{ id: 'dummy' },
     });
     if (errMessage !== '') {
       return throwError(() => new Error(errMessage));
@@ -60,16 +60,13 @@ export class AfAccrualsDataService {
     return from(addDoc(this.accrualsCollection, newAccrual));
   }
 
-  updateAccrual(
-    currentAccrual: Accrual,
-    updateData: Partial<Accrual>
-  ): Observable<void> {
-    const modifiedAccrual = { ...currentAccrual, ...updateData };
+  updateAccrual(id: string, updateData: Omit<Accrual, 'id'>): Observable<void> {
+    const modifiedAccrual = { ...{ id }, ...updateData };
     const errMessage = validateAccrual(modifiedAccrual);
     if (errMessage !== '') {
       return throwError(() => new Error(errMessage));
     }
-    const docRef = doc(this.firestore, `accruals/${currentAccrual.id}`);
+    const docRef = doc(this.firestore, `accruals/${id}`);
     return from(updateDoc(docRef, updateData));
   }
 

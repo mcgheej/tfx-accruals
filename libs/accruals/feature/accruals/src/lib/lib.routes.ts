@@ -4,10 +4,14 @@ import { accrualFormResolver } from './accrual-form/accrual-form.resolver';
 import { AccrualsComponent } from './accruals/accruals.component';
 
 export const accrualsRoutes: Route[] = [
-  { path: 'add', component: AccrualFormComponent },
+  {
+    path: 'add',
+    resolve: { vmAccrual: accrualFormResolver },
+    component: AccrualFormComponent,
+  },
   {
     path: 'edit/:id',
-    resolve: { accrual: accrualFormResolver },
+    resolve: { vmAccrual: accrualFormResolver },
     component: AccrualFormComponent,
   },
   { path: '', component: AccrualsComponent },
