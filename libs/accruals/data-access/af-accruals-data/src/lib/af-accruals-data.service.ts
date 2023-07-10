@@ -12,11 +12,13 @@ import {
 import {
   Accrual,
   PresentationAccrual,
+  StatementsState,
 } from '@tfx-accruals/accruals/util/accruals-types';
 import { AfAuthenticationService } from '@tfx-accruals/shared/util/af-authentication';
 import { addDoc, orderBy, query } from 'firebase/firestore';
 import { Observable, catchError, from, map, of, throwError } from 'rxjs';
 import { getAccrualTotals, validateAccrual } from './helpers';
+import { statementsStateFromAccruals } from './statements-state-from-accruals';
 
 @Injectable({ providedIn: 'root' })
 export class AfAccrualsDataService {
@@ -26,6 +28,8 @@ export class AfAccrualsDataService {
   private accrualsCollection: CollectionReference;
 
   presentationAccruals$: Observable<PresentationAccrual[]>;
+
+  statementsState$: Observable<StatementsState>;
 
   constructor() {
     this.accrualsCollection = collection(this.firestore, 'accruals');
@@ -46,6 +50,13 @@ export class AfAccrualsDataService {
         );
       })
     );
+
+    this.statementsState$ = this.presentationAccruals$.pipe(
+      map((accruals) => {
+        return statementsStateFromAccruals(accruals);
+      })
+    );
+    this.statementsState$.subscribe();
   }
 
   createAccrual(
