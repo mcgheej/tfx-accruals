@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { AfAuthenticationService } from '@tfx-accruals/shared/util/af-authentication';
+import { format } from 'date-fns';
 import { map } from 'rxjs';
 import { HamburgerButtonComponent } from './hamburger-button.component';
 import { LogoComponent } from './logo.component';
@@ -31,5 +32,9 @@ export class NavbarComponent {
 
   onLogout() {
     this.afAuth.logout();
+  }
+
+  getThisMonthStatementPath(): string {
+    return `/statements/${format(Date.now(), 'yyyyMM')}`;
   }
 }

@@ -22,7 +22,7 @@
       <li *ngIf="vm.loggedIn">
         <a
           class="md:p-4 py-2 block hover:text-purple-400"
-          routerLink="/statements"
+          [routerLink]="getThisMonthStatementPath()"
           >Statements</a
         >
       </li>

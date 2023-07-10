@@ -44,11 +44,11 @@ export class AccrualFormComponent {
    * The following inputs are bound to the routes targeting this component
    * through Component Input Binding.
    *
-   * accrual: this is bound to output of a resolver that gets the accrual
-   *          object associated with the id in the path "accruals/edit/:id"
+   * vmAccrual: this is bound to output of a resolver that gets the accrual
+   *            object associated with the id in the path "accruals/edit/:id"
    *
    * The other path that routes to this component is "accruals/add". In this case
-   * both the component properties will be undefined.
+   * vmAccrual will be undefined.
    */
   @Input() vmAccrual!: VMAccrual;
 
