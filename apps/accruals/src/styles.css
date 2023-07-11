@@ -18,3 +18,7 @@ body {
   .mdc-notched-outline__notch {
   border-right-style: hidden;
 }
+
+.mat-mdc-button-base {
+  line-height: normal;
+}

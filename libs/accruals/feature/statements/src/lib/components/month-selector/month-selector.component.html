@@ -1,0 +1,24 @@
+<div class="flex items-center">
+  <button mat-icon-button matTooltip="Previous month" (click)="onPrevMonth()">
+    <mat-icon>chevron_left</mat-icon>
+  </button>
+  <div class="font-medium w-32 text-center select-none">
+    {{ displayStatementMonth() }}
+  </div>
+  <button mat-icon-button matTooltip="Next month" (click)="onNextMonth()">
+    <mat-icon>chevron_right</mat-icon>
+  </button>
+  <button
+    mat-icon-button
+    matTooltip="Select month"
+    (click)="onOpenDatepicker(picker, toggleIcon)"
+  >
+    <mat-icon #toggleIcon>home</mat-icon>
+  </button>
+  <input type="invisible" [matDatepicker]="picker" />
+  <mat-datepicker
+    #picker
+    startView="multi-year"
+    (monthSelected)="setMonthAndYear($event, picker)"
+  ></mat-datepicker>
+</div>

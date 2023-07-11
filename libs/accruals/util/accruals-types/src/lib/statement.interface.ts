@@ -7,3 +7,9 @@ export interface Statement {
   withdrawals: Transaction[];
   deposits: Transaction[];
 }
+
+export interface VMStatement extends Statement {
+  statementMonth: Date;
+  minDate: Date;
+  maxDate: Date;
+}
