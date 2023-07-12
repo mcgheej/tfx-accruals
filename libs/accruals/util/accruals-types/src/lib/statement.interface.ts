@@ -2,7 +2,7 @@ import { Transaction } from './transaction.interface';
 
 export interface Statement {
   yearMonth: string;
-  openingBalace: number;
+  openingBalance: number;
   closingBalance: number;
   withdrawals: Transaction[];
   deposits: Transaction[];

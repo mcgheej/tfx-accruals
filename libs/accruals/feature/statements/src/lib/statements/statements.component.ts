@@ -11,25 +11,28 @@ import { Router } from '@angular/router';
 import { VMStatement } from '@tfx-accruals/accruals/util/accruals-types';
 import { compareAsc, compareDesc, parse } from 'date-fns';
 import { MonthSelectorComponent } from '../components/month-selector/month-selector.component';
+import { StatementBalanceComponent } from '../components/statement-balance/statement-balance.component';
+import { TransactionsComponent } from '../components/transactions/transactions.component';
+import { displayStatementMonth } from '../helpers';
 
 @Component({
   selector: 'tfx-statements',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, MonthSelectorComponent],
-  template: `
-    <tfx-month-selector
-      [statementMonth]="vmStatement.statementMonth"
-      (monthChanged)="onMonthChanged($event)"
-    ></tfx-month-selector>
-    <div>
-      {{ vmStatement | json }}
-    </div>
-  `,
+  imports: [
+    CommonModule,
+    MatButtonModule,
+    MonthSelectorComponent,
+    StatementBalanceComponent,
+    TransactionsComponent,
+  ],
+  templateUrl: './statements.html',
   styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StatementsComponent implements OnInit {
-  @Input() vmStatement!: VMStatement;
+  @Input() vmStatement: VMStatement | undefined;
+
+  displayStatementMonth = displayStatementMonth;
 
   private router = inject(Router);
 
@@ -40,8 +43,9 @@ export class StatementsComponent implements OnInit {
   onMonthChanged(newMonth: string) {
     const newMonthDate = parse(newMonth, 'yyyyMM', Date.now());
     if (
-      compareAsc(newMonthDate, this.vmStatement.minDate) < 0 ||
-      compareDesc(newMonthDate, this.vmStatement.maxDate) < 0
+      this.vmStatement &&
+      (compareAsc(newMonthDate, this.vmStatement.minDate) < 0 ||
+        compareDesc(newMonthDate, this.vmStatement.maxDate) < 0)
     ) {
       this.router.navigateByUrl(`statements/${this.vmStatement.yearMonth}`);
     } else {

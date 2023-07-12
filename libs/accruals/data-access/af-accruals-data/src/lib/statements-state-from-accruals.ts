@@ -116,7 +116,7 @@ function addAccrualDeposit(
     const statements = { ...statementsState.statements };
     statements[statementId] = {
       yearMonth: statementId,
-      openingBalace: 0,
+      openingBalance: 0,
       closingBalance: 0,
       withdrawals: [],
       deposits: [{ name: accrual.name, amount: deposit }],
@@ -165,7 +165,7 @@ function addAccrualWithdrawal(
     const statements = { ...statementsState.statements };
     statements[id] = {
       yearMonth: id,
-      openingBalace: 0,
+      openingBalance: 0,
       closingBalance: 0,
       withdrawals: [{ name: accrual.name, amount: accrual.targetValue }],
       deposits: [],
@@ -188,7 +188,7 @@ function addAccrualWithdrawal(
 function addBalances(statementsState: StatementsState): StatementsState {
   const s = { ...statementsState };
   s.statements = { ...s.statements };
-  let openingBalace = 0;
+  let openingBalance = 0;
   s.ids.map((id) => {
     const depositsTotal = s.statements[id].deposits.reduce(
       (acc, d) => ({ name: '', amount: acc.amount + d.amount }),
@@ -198,13 +198,13 @@ function addBalances(statementsState: StatementsState): StatementsState {
       (acc, w) => ({ name: '', amount: acc.amount + w.amount }),
       { name: '', amount: 0 }
     ).amount;
-    const closingBalance = openingBalace + depositsTotal - withdrawalsTotal;
+    const closingBalance = openingBalance + depositsTotal - withdrawalsTotal;
     s.statements[id] = {
       ...s.statements[id],
-      openingBalace,
+      openingBalance,
       closingBalance,
     };
-    openingBalace = closingBalance;
+    openingBalance = closingBalance;
   });
   return s;
 }

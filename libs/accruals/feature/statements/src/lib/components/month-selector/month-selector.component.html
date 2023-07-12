@@ -2,8 +2,10 @@
   <button mat-icon-button matTooltip="Previous month" (click)="onPrevMonth()">
     <mat-icon>chevron_left</mat-icon>
   </button>
-  <div class="font-medium w-32 text-center select-none">
-    {{ displayStatementMonth() }}
+  <div
+    class="font-medium w-12 text-xs sm:w-32 sm:text-base text-center select-none"
+  >
+    {{ displayStatementMonth(statementMonth, monthFormat) }}
   </div>
   <button mat-icon-button matTooltip="Next month" (click)="onNextMonth()">
     <mat-icon>chevron_right</mat-icon>
@@ -13,9 +15,9 @@
     matTooltip="Select month"
     (click)="onOpenDatepicker(picker, toggleIcon)"
   >
-    <mat-icon #toggleIcon>home</mat-icon>
+    <mat-icon #toggleIcon>today</mat-icon>
   </button>
-  <input type="invisible" [matDatepicker]="picker" />
+  <input type="invisible" class="w-1" [matDatepicker]="picker" />
   <mat-datepicker
     #picker
     startView="multi-year"

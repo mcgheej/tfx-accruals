@@ -1,0 +1,10 @@
+<div class="text-lg mt-2">{{ title }}</div>
+<div class="mx-1">
+  <tfx-transaction
+    *ngFor="let transaction of transactions"
+    [transaction]="transaction"
+  ></tfx-transaction>
+  <div class="flex justify-end">
+    <div class="border-b-2">{{ getTotal() | currency : 'GBP' }}</div>
+  </div>
+</div>

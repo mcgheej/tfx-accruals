@@ -1,0 +1,41 @@
+<div *ngIf="vmStatement" class="w-full md:max-w-3xl md:mx-auto">
+  <div class="mx-2">
+    <div class="flex m-0 items-center sm:mt-1 sm:mb-2">
+      <div class="grow text-lg font-semibold sm:text-2xl">
+        Monthly Statement
+      </div>
+      <tfx-month-selector
+        class="flex-none sm:hidden"
+        [statementMonth]="vmStatement.statementMonth"
+        [monthFormat]="'MMM'"
+        (monthChanged)="onMonthChanged($event)"
+      ></tfx-month-selector>
+      <tfx-month-selector
+        class="flex-none hidden sm:block"
+        [statementMonth]="vmStatement.statementMonth"
+        (monthChanged)="onMonthChanged($event)"
+      ></tfx-month-selector>
+    </div>
+    <div class="font-medium -mt-4 mb-1 sm:text-lg">
+      {{ displayStatementMonth(vmStatement.statementMonth)}}
+    </div>
+    <tfx-statement-balance
+      title="Opening balance"
+      [amount]="vmStatement.openingBalance"
+    ></tfx-statement-balance>
+    <tfx-transactions
+      *ngIf="vmStatement.withdrawals.length > 0"
+      [title]="'Withdrawals'"
+      [transactions]="vmStatement.withdrawals"
+    ></tfx-transactions>
+    <tfx-transactions
+      *ngIf="vmStatement.deposits.length > 0"
+      [title]="'Deposits'"
+      [transactions]="vmStatement.deposits"
+    ></tfx-transactions>
+    <tfx-statement-balance
+      title="Closing balance"
+      [amount]="vmStatement.closingBalance"
+    ></tfx-statement-balance>
+  </div>
+</div>

@@ -1,5 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 import { AfAuthenticationService } from '@tfx-accruals/shared/util/af-authentication';
 import { format } from 'date-fns';
@@ -10,7 +12,14 @@ import { LogoComponent } from './logo.component';
 @Component({
   selector: 'tfx-navbar',
   standalone: true,
-  imports: [CommonModule, LogoComponent, RouterLink, HamburgerButtonComponent],
+  imports: [
+    CommonModule,
+    LogoComponent,
+    RouterLink,
+    MatButtonModule,
+    MatIconModule,
+    HamburgerButtonComponent,
+  ],
   templateUrl: './navbar.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

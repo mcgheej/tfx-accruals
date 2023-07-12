@@ -15,6 +15,7 @@ import { MatIcon, MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { add, format, sub } from 'date-fns';
+import { displayStatementMonth } from '../../helpers';
 
 @Component({
   selector: 'tfx-month-selector',
@@ -32,7 +33,10 @@ import { add, format, sub } from 'date-fns';
 })
 export class MonthSelectorComponent {
   @Input({ required: true }) statementMonth!: Date;
+  @Input() monthFormat: 'MMMM' | 'MMM' = 'MMMM';
   @Output() monthChanged = new EventEmitter<string>();
+
+  displayStatementMonth = displayStatementMonth;
 
   setMonthAndYear(
     normalizedMonthAndYear: Date,
@@ -41,10 +45,6 @@ export class MonthSelectorComponent {
     const newStatementMonth = format(normalizedMonthAndYear, 'yyyyMM');
     datepicker.close();
     this.monthChanged.emit(newStatementMonth);
-  }
-
-  displayStatementMonth(): string {
-    return format(this.statementMonth, 'MMMM yyyy');
   }
 
   onPrevMonth() {
