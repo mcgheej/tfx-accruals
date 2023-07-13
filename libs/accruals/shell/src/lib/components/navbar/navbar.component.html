@@ -16,40 +16,47 @@
         <a
           class="md:p-4 py-2 block hover:text-purple-400"
           routerLink="/dashboard"
+          routerLinkActive="active-link"
           >Dashboard</a
         >
       </li>
       <li *ngIf="vm.loggedIn">
         <a
-          class="md:p-4 py-2 block hover:text-purple-400"
+          class="md:p-4 py-2 block hover:text-purple-400 box-border"
           [routerLink]="getThisMonthStatementPath()"
+          routerLinkActive="active-link"
           >Statements</a
         >
       </li>
       <li *ngIf="vm.loggedIn">
         <a
-          class="md:p-4 py-2 block hover:text-purple-400"
+          class="md:p-4 py-2 block hover:text-purple-400 box-border"
           routerLink="/accruals"
+          routerLinkActive="active-link"
           >Accruals</a
         >
       </li>
       <li *ngIf="vm.loggedIn">
         <div
-          class="md:p-4 py-2 block hover:text-purple-400 cursor-pointer select-none"
+          class="md:p-4 py-2 block hover:text-purple-400 cursor-pointer select-none box-border"
           (click)="onLogout()"
         >
           Logout
         </div>
       </li>
       <li *ngIf="!vm.loggedIn">
-        <a class="md:p-4 py-2 block hover:text-purple-400" routerLink="/login"
+        <a
+          class="md:p-4 py-2 block hover:text-purple-400 box-border"
+          routerLink="/login"
+          routerLinkActive="active-link"
           >Login</a
         >
       </li>
       <li *ngIf="!vm.loggedIn">
         <a
-          class="md:p-4 py-2 block hover:text-purple-400"
+          class="md:p-4 py-2 block hover:text-purple-400 box-border"
           routerLink="/register"
+          routerLinkActive="active-link"
           >Register</a
         >
       </li>
