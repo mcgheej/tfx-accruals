@@ -1,6 +1,8 @@
-<div>
+<div class="my-0 mx-auto w-full md:w-[768px]">
   <mat-tab-group
     *ngIf="categorisedAccruals$ | async as categorisedAccruals"
+    mat-stretch-tabs="false"
+    mat-align-tabs="center"
     (focusChange)="setShowAddAccrualButton(false)"
     (animationDone)="setShowAddAccrualButton(true)"
   >
