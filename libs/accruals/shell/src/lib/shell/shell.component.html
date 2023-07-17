@@ -1,7 +1,9 @@
 <div *ngIf="vm$ | async as vm" class="flex flex-col h-full">
   <tfx-navbar
     [navProps]="navProps"
+    [loggedIn]="vm.loggedIn"
     (toggleSidenav)="sidenav.toggle()"
+    (logoutClick)="onLogout(sidenav)"
   ></tfx-navbar>
   <div class="flex-grow-1 h-full">
     <mat-sidenav-container class="h-full">

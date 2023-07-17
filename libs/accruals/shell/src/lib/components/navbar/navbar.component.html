@@ -1,5 +1,4 @@
 <nav
-  *ngIf="vm$ | async as vm"
   class="flex flex-wrap items-center w-full py-0 px-4 text-base sm:text-xl font-medium text-gray-700 bg-white"
 >
   <div class="sm:hidden">
@@ -15,17 +14,17 @@
   >
     <li *ngFor="let props of navProps">
       <a
-        *ngIf="vm.loggedIn === props.loggedInRequired"
+        *ngIf="loggedIn === props.loggedInRequired"
         class="p-4 py-2 block hover:text-purple-400"
         [routerLink]="props.url"
         routerLinkActive="active-link"
         >{{ props.title }}</a
       >
     </li>
-    <li *ngIf="vm.loggedIn">
+    <li *ngIf="loggedIn">
       <div
         class="p-4 py-2 block hover:text-purple-400 cursor-pointer select-none box-border"
-        (click)="onLogout()"
+        (click)="logoutClick.emit()"
       >
         Logout
       </div>
