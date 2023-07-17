@@ -1,11 +1,18 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  inject,
+} from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { AfAuthenticationService } from '@tfx-accruals/shared/util/af-authentication';
-import { format } from 'date-fns';
 import { map } from 'rxjs';
+import { NavProps } from '../../shell.types';
 import { HamburgerButtonComponent } from './hamburger-button.component';
 import { LogoComponent } from './logo.component';
 
@@ -32,6 +39,11 @@ import { LogoComponent } from './logo.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavbarComponent {
+  @Input() navProps: NavProps[] = [];
+  @Output() toggleSidenav = new EventEmitter<void>();
+
+  private afAuth = inject(AfAuthenticationService);
+
   menuHidden = true;
   vm$ = this.afAuth.isLoggedIn$.pipe(
     map((loggedIn) => {
@@ -41,17 +53,11 @@ export class NavbarComponent {
     })
   );
 
-  constructor(private afAuth: AfAuthenticationService) {}
-
   onMenuButtonClick() {
     this.menuHidden = !this.menuHidden;
   }
 
   onLogout() {
     this.afAuth.logout();
-  }
-
-  getThisMonthStatementPath(): string {
-    return `/statements/${format(Date.now(), 'yyyyMM')}`;
   }
 }

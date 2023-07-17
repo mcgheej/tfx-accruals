@@ -8,6 +8,4 @@ import { ShellComponent } from '@tfx-accruals/accruals/shell';
   selector: 'tfx-root',
   template: `<tfx-shell></tfx-shell>`,
 })
-export class AppComponent {
-  title = 'accruals';
-}
+export class AppComponent {}

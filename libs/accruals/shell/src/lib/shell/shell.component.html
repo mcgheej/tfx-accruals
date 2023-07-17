@@ -1,0 +1,37 @@
+<div *ngIf="vm$ | async as vm" class="flex flex-col h-full">
+  <tfx-navbar
+    [navProps]="navProps"
+    (toggleSidenav)="sidenav.toggle()"
+  ></tfx-navbar>
+  <div class="flex-grow-1 h-full">
+    <mat-sidenav-container class="h-full">
+      <mat-sidenav class="w-64" #sidenav (keydown.escape)="sidenav.close()">
+        <mat-nav-list>
+          <ng-container *ngFor="let props of navProps">
+            <mat-list-item *ngIf="vm.loggedIn === props.loggedInRequired">
+              <a
+                matListItemTitle
+                class="no-underline text-white hover:text-gray-300"
+                [routerLink]="props.url"
+                (click)="sidenav.close()"
+                >{{ props.title }}</a
+              >
+            </mat-list-item>
+          </ng-container>
+          <mat-list-item
+            *ngIf="vm.loggedIn"
+            class="no-underline text-white hover:text-gray-300"
+            (click)="onLogout(sidenav)"
+          >
+            Logout
+          </mat-list-item>
+        </mat-nav-list>
+      </mat-sidenav>
+      <mat-sidenav-content>
+        <main>
+          <router-outlet></router-outlet>
+        </main>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+  </div>
+</div>
