@@ -1,11 +1,11 @@
 <div *ngIf="vmStatement" class="w-full md:max-w-3xl md:mx-auto">
   <div class="mx-2">
     <div class="flex m-0 items-center sm:mt-1 sm:mb-2">
-      <div class="grow text-lg font-semibold sm:text-2xl">
+      <div class="grow text-base font-semibold sm:text-lg">
         Monthly Statement
       </div>
       <tfx-month-selector
-        class="flex-none sm:hidden"
+        class="flex-none text-sm sm:text-base sm:hidden"
         [statementMonth]="vmStatement.statementMonth"
         [monthFormat]="'MMM'"
         (monthChanged)="onMonthChanged($event)"
@@ -16,7 +16,7 @@
         (monthChanged)="onMonthChanged($event)"
       ></tfx-month-selector>
     </div>
-    <div class="font-medium -mt-4 mb-1 sm:text-lg">
+    <div class="font-semibold text-sm sm:text-base -mt-4 mb-1">
       {{ displayStatementMonth(vmStatement.statementMonth)}}
     </div>
     <tfx-statement-balance
