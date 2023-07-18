@@ -30,9 +30,6 @@
       "@tfx-accruals/accruals/feature/login": [
         "libs/accruals/feature/login/src/index.ts"
       ],
-      "@tfx-accruals/accruals/feature/register": [
-        "libs/accruals/feature/register/src/index.ts"
-      ],
       "@tfx-accruals/accruals/feature/statements": [
         "libs/accruals/feature/statements/src/index.ts"
       ],

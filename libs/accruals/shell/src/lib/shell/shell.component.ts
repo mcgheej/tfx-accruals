@@ -73,11 +73,6 @@ export class ShellComponent {
       url: './login',
       loggedInRequired: false,
     },
-    {
-      title: 'Register',
-      url: './register',
-      loggedInRequired: false,
-    },
   ];
 
   onHomeClick() {

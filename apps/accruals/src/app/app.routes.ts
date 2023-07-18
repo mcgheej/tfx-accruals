@@ -11,13 +11,6 @@ export const appRoutes: Route[] = [
       import('@tfx-accruals/accruals/feature/login').then((m) => m.loginRoutes),
   },
   {
-    path: 'register',
-    loadChildren: () =>
-      import('@tfx-accruals/accruals/feature/register').then(
-        (m) => m.registerRoutes
-      ),
-  },
-  {
     path: 'statements',
     loadChildren: () =>
       import('@tfx-accruals/accruals/feature/statements').then(
