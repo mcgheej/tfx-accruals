@@ -6,7 +6,6 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './statement-balance.component.html',
-  styleUrls: ['./statement-balance.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StatementBalanceComponent {

@@ -2,7 +2,7 @@
   class="flex flex-wrap items-center w-full py-0 px-4 text-base sm:text-xl font-medium text-gray-700 bg-white"
 >
   <div class="sm:hidden">
-    <button mat-icon-button (click)="toggleSidenav.emit()">
+    <button #button mat-icon-button (click)="onSidenavToggleClick(button)">
       <mat-icon>menu</mat-icon>
     </button>
   </div>

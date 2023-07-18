@@ -6,7 +6,7 @@ import {
   Input,
   Output,
 } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
+import { MatButtonModule, MatIconButton } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { NavProps } from '../../shell.types';
@@ -36,4 +36,9 @@ export class NavbarComponent {
   @Input() loggedIn = false;
   @Output() toggleSidenav = new EventEmitter<void>();
   @Output() logoutClick = new EventEmitter<void>();
+
+  onSidenavToggleClick(button: MatIconButton) {
+    button._elementRef.nativeElement.blur();
+    this.toggleSidenav.emit();
+  }
 }

@@ -8,7 +8,6 @@ import { TransactionComponent } from '../transaction/transaction.component';
   standalone: true,
   imports: [CommonModule, TransactionComponent],
   templateUrl: './transactions.component.html',
-  styleUrls: ['./transactions.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TransactionsComponent {
