@@ -16,10 +16,10 @@ import {
   withComponentInputBinding,
   withEnabledBlockingInitialNavigation,
 } from '@angular/router';
-import { appRoutes } from '@tfx-accruals/accruals/shell';
 import { firebaseConfig } from '@tfx-accruals/accruals/util/firebase-config';
 import { provideAfAuthentication } from '@tfx-accruals/shared/util/af-authentication';
 import { enGB } from 'date-fns/locale';
+import { appRoutes } from './app.routes';
 
 const dateInput = 'MM/yyyy';
 
