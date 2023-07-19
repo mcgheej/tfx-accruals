@@ -1,3 +1,23 @@
-<div *ngIf="vmDashboard as vm">
-  <div>{{ vm | json }}</div>
+<div
+  *ngIf="vmDashboard as vm"
+  class="flex flex-row flex-wrap gap-x-4 gap-y-2 sm:gap-y-4 justify-center w-full my-2 md:mx-auto md:w-[768px]"
+>
+  <tfx-dashboard-accruals
+    [accrualsData]="vm.accruals"
+    class="basis-80 shrink-0 grow-0 h-36 bg-white shadow-lg"
+  ></tfx-dashboard-accruals>
+  <tfx-dashboard-account
+    [accountData]="vm.account"
+    class="basis-80 shrink-0 grow-0 h-36 bg-white shadow-lg"
+  ></tfx-dashboard-account>
+  <tfx-dashboard-month
+    title="This Month"
+    [monthData]="vm.thisMonth"
+    class="basis-80 shrink-0 grow-0 h-36 bg-white shadow-lg"
+  ></tfx-dashboard-month>
+  <tfx-dashboard-month
+    title="Next Month"
+    [monthData]="vm.nextMonth"
+    class="basis-80 shrink-0 grow-0 h-36 bg-white shadow-lg"
+  ></tfx-dashboard-month>
 </div>

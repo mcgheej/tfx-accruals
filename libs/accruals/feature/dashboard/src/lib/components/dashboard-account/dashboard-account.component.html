@@ -1,0 +1,21 @@
+<div class="mx-2 mt-2 mb-1 font-semibold text-lg">Account Summary</div>
+<div class="ml-5">
+  <div class="flex w-52">
+    <div class="grow">Opening balance:</div>
+    <div class="flex-none">
+      {{ accountData.openingBalance | currency : 'GBP' }}
+    </div>
+  </div>
+  <div class="flex w-52">
+    <div class="grow">{{ transferTitle(accountData.transfer) }}</div>
+    <div class="flex-none">
+      {{ transferAmount(accountData.transfer) | currency : 'GBP' }}
+    </div>
+  </div>
+  <div class="flex w-52">
+    <div class="grow">Closing balance:</div>
+    <div class="flex-none">
+      {{ accountData.closingBalance | currency : 'GBP' }}
+    </div>
+  </div>
+</div>

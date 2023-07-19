@@ -1,11 +1,19 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { DashboardAccountComponent } from '../components/dashboard-account/dashboard-account.component';
+import { DashboardAccrualsComponent } from '../components/dashboard-accruals/dashboard-accruals.component';
+import { DashboardMonthComponent } from '../components/dashboard-month/dashboard-month.component';
 import { VMDashboard } from '../dashboard.types';
 
 @Component({
   selector: 'tfx-dashboard',
   standalone: true,
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+    DashboardAccrualsComponent,
+    DashboardAccountComponent,
+    DashboardMonthComponent,
+  ],
   templateUrl: './dashboard.component.html',
   styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
