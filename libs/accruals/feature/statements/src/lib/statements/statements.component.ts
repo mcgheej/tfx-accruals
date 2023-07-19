@@ -3,7 +3,6 @@ import {
   ChangeDetectionStrategy,
   Component,
   Input,
-  OnInit,
   inject,
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
@@ -29,16 +28,17 @@ import { displayStatementMonth } from '../helpers';
   styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class StatementsComponent implements OnInit {
+export class StatementsComponent {
+  /**
+   * vmStatement is bound to the output of a resolver that gets
+   * a VMStatement object containing data for the month identified
+   * by a route parameter
+   */
   @Input() vmStatement: VMStatement | undefined;
 
   displayStatementMonth = displayStatementMonth;
 
   private router = inject(Router);
-
-  ngOnInit(): void {
-    console.log(this.vmStatement);
-  }
 
   onMonthChanged(newMonth: string) {
     const newMonthDate = parse(newMonth, 'yyyyMM', Date.now());

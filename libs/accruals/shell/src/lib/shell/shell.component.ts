@@ -85,7 +85,6 @@ export class ShellComponent {
   }
 
   getThisMonthStatementPath(): string {
-    console.log(this.router.url);
     return `./statements/${format(Date.now(), 'yyyyMM')}`;
   }
 }
