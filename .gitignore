@@ -39,3 +39,8 @@ testem.log
 Thumbs.db
 
 .angular
+.firebaserc
+firebase.json
+firestore.indexes.json
+firestore.rules
+.firebase/hosting.ZGlzdFxhcHBzXGFjY3J1YWxz.cache
