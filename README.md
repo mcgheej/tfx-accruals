@@ -4,7 +4,7 @@ A simple tool designed to help manage household budgets, specifically by managin
 
 ## Technologies
 
-The application was developed using the Angular framework, together with Angular Material for UI components and Tailwind CSS for styling. Backend services are provided by Firebase, utilising Firebase Authentication for email/password based authentication services and Firestore for database services.
+The application was developed using the Angular framework, together with Angular Material for UI components and Tailwind CSS for styling. Firebase provides the backend services, utilising Firebase Authentication for Eemail/Password based authentication service and Firestore for database service.
 
 The application uses standalone components throughout.
 
@@ -18,7 +18,7 @@ To install the application simply clone or download the project and run:
 npm install.
 ```
 
-To use the application you will need to create a Firebase project and configure it to provide Email/Passwor authentication and Firestore database services. Once configured you can replace the Firebase api config details in the codebase with your Firebase project's api config.
+To use the application you will need to create a Firebase project and configure it to provide Email/Password authentication and Firestore database services. Once configured you can replace the Firebase api config details in the codebase with your Firebase project's api config.
 
 That done you should be ready to run the application by serving locally:
 
