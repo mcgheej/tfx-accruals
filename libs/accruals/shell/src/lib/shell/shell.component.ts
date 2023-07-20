@@ -81,7 +81,7 @@ export class ShellComponent {
 
   onLogout(sidenav: MatSidenav) {
     sidenav.close();
-    this.afAuth.logout();
+    this.afAuth.logout().subscribe(() => this.router.navigateByUrl('/home'));
   }
 
   getThisMonthStatementPath(): string {

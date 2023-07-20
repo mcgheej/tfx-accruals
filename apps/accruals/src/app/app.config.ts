@@ -49,10 +49,7 @@ export const appConfig: ApplicationConfig = {
       provideAuth(() => getAuth()),
       provideFirestore(() => getFirestore()),
     ]),
-    provideAfAuthentication({
-      urlOnLoggedIn: '/accruals',
-      urlOnLoggedOut: '/home',
-    }),
+    provideAfAuthentication(),
     { provide: MAT_DATE_LOCALE, useValue: enGB },
     { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS },
     { provide: DateAdapter, useClass: DateFnsAdapter },

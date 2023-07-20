@@ -12,6 +12,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { AfAuthenticationService } from '@tfx-accruals/shared/util/af-authentication';
 
 interface UserDetails {
@@ -36,6 +37,7 @@ interface UserDetails {
 })
 export class LoginComponent {
   private fb: FormBuilder = inject(FormBuilder);
+  private router: Router = inject(Router);
   private snackBar: MatSnackBar = inject(MatSnackBar);
   private afAuth: AfAuthenticationService = inject(AfAuthenticationService);
 
@@ -72,6 +74,7 @@ export class LoginComponent {
     const password = value.password ?? '';
 
     this.afAuth.login(email, password).subscribe({
+      next: () => this.router.navigateByUrl('/accruals'),
       error: () => {
         formDirective.resetForm();
         this.loginForm.reset();
