@@ -1,23 +1,33 @@
 <div
   *ngIf="vmDashboard as vm"
-  class="flex flex-row flex-wrap gap-x-4 gap-y-2 sm:gap-y-4 justify-center w-full my-2 md:mx-auto md:w-[768px]"
+  class="w-full my-2 sm:my-4 md:mx-auto md:w-[768px]"
 >
-  <tfx-dashboard-accruals
-    [accrualsData]="vm.accruals"
-    class="basis-80 shrink-0 grow-0 h-36 bg-white shadow-lg"
-  ></tfx-dashboard-accruals>
-  <tfx-dashboard-account
-    [accountData]="vm.account"
-    class="basis-80 shrink-0 grow-0 h-36 bg-white shadow-lg"
-  ></tfx-dashboard-account>
-  <tfx-dashboard-month
-    title="This Month"
-    [monthData]="vm.thisMonth"
-    class="basis-80 shrink-0 grow-0 h-36 bg-white shadow-lg"
-  ></tfx-dashboard-month>
-  <tfx-dashboard-month
-    title="Next Month"
-    [monthData]="vm.nextMonth"
-    class="basis-80 shrink-0 grow-0 h-36 bg-white shadow-lg"
-  ></tfx-dashboard-month>
+  <div
+    class="sm:hidden flex flex-row gap-y-1 flex-wrap sm:gap-y-4 justify-center"
+  >
+    <div class="basis-80 text-lg font-semibold">Dashboard</div>
+    <div class="basis-80"></div>
+  </div>
+  <div
+    class="flex flex-row flex-wrap gap-x-4 gap-y-2 sm:gap-y-4 justify-center"
+  >
+    <tfx-dashboard-accruals
+      [accrualsData]="vm.accruals"
+      class="basis-80 shrink-0 grow-0 h-36 bg-white shadow-lg"
+    ></tfx-dashboard-accruals>
+    <tfx-dashboard-account
+      [accountData]="vm.account"
+      class="basis-80 shrink-0 grow-0 h-36 bg-white shadow-lg"
+    ></tfx-dashboard-account>
+    <tfx-dashboard-month
+      title="This Month"
+      [monthData]="vm.thisMonth"
+      class="basis-80 shrink-0 grow-0 h-36 bg-white shadow-lg"
+    ></tfx-dashboard-month>
+    <tfx-dashboard-month
+      title="Next Month"
+      [monthData]="vm.nextMonth"
+      class="basis-80 shrink-0 grow-0 h-36 bg-white shadow-lg"
+    ></tfx-dashboard-month>
+  </div>
 </div>
