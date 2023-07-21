@@ -16,7 +16,7 @@
         "polyfills": ["zone.js"],
         "tsConfig": "apps/accruals/tsconfig.app.json",
         "assets": [
-          "apps/accruals/src/favicon.ico",
+          "apps/accruals/src/favicon.png",
           "apps/accruals/src/assets",
           {
             "input": "libs/accruals/util/assets/src/lib",
