@@ -4,7 +4,7 @@ A simple tool designed to help manage household budgets, specifically by managin
 
 ## Technologies
 
-The application was developed using the Angular framework, together with Angular Material for UI components and Tailwind CSS for styling. Firebase provides the backend services, utilising Firebase Authentication for Eemail/Password based authentication service and Firestore for database service.
+The application was developed using the Angular framework, together with Angular Material for UI components and Tailwind CSS for styling. Firebase provides the backend services, utilising Firebase Authentication for Email/Password based authentication service and Firestore for database service.
 
 The application uses standalone components throughout.
 
