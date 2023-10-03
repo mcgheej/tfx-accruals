@@ -11,7 +11,8 @@
         "outputPath": "dist/libs/accruals/util/accruals-types",
         "main": "libs/accruals/util/accruals-types/src/index.ts",
         "tsConfig": "libs/accruals/util/accruals-types/tsconfig.lib.json",
-        "assets": []
+        "assets": [],
+        "updateBuildableProjectDepsInPackageJson": true
       }
     },
     "lint": {
