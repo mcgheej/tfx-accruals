@@ -13,17 +13,14 @@ import {
 } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
-import { AfAccrualsDataService } from '@tfx-accruals/accruals/data-access/af-accruals-data';
 import {
-  Accrual,
-  PresentationAccrual,
+  MAX_ACCRUAL_DURATION_IN_MONTHS,
+  MIN_ACCRUAL_DURATION_IN_MONTHS,
 } from '@tfx-accruals/accruals/util/accruals-types';
-import { format } from 'date-fns';
-export interface VMAccrual extends PresentationAccrual {
-  firstDepositDate: Date;
-}
+import { add, format } from 'date-fns';
+import { intervalToDuration } from 'date-fns/esm';
+import { AccrualFormService } from './accrual-form.service';
+import { VMAccrual } from './vm-accrual';
 
 @Component({
   selector: 'tfx-accrual-form',
@@ -37,6 +34,7 @@ export interface VMAccrual extends PresentationAccrual {
     MatInputModule,
   ],
   templateUrl: './accrual-form.component.html',
+  providers: [AccrualFormService],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AccrualFormComponent {
@@ -48,79 +46,84 @@ export class AccrualFormComponent {
    *            object associated with the id in the path "accruals/edit/:id"
    *
    * The other path that routes to this component is "accruals/add". In this case
-   * vmAccrual will be undefined.
+   * the resolver will intialise vmAccrual to the initial values defined for an accrual.
    */
   @Input() vmAccrual!: VMAccrual;
 
-  private router = inject(Router);
-  private snackBar = inject(MatSnackBar);
-  private db = inject(AfAccrualsDataService);
+  private service = inject(AccrualFormService);
 
+  /**
+   * Called when the user completes entering data on the form.
+   *
+   * If the user was updating an existing accrual then the VMAccrual
+   * object input to the component will have an non-empty id field.
+   * In this case the accrual will be updated with any changes.
+   *
+   * If the id field is empty then a new accrual will be created.
+   */
   onSubmit() {
     this.vmAccrual.startDate = format(
       this.vmAccrual.firstDepositDate,
       'yyyyMM'
     );
-    const accrualData = this.vmToAccrualData(this.vmAccrual);
-    console.log(accrualData);
+    const accrualData = this.service.vmToAccrualData(this.vmAccrual);
     if (this.vmAccrual.id) {
-      this.updateAccrual(this.vmAccrual.id, accrualData);
+      this.service.updateAccrual(this.vmAccrual.id, accrualData);
     } else {
-      this.createAccrual(accrualData);
+      this.service.createAccrual(accrualData);
     }
   }
 
+  /**
+   * This method is called when the user changes the accrual start
+   * date, i.e. the date when the first deposit for the accrual is due.
+   *
+   * The method updates the VMAccrual object fields affected when the
+   * user selects a start date using the form's Start Date datepicker control.
+   * Affected fields are firstDepositDate, withdrawalDate, minWithdrawalDate
+   * and maxWithdrawalDate. The method finsihes by closing the datepicker
+   * control.
+   */
   setMonthAndYear(
     normalizedMonthAndYear: Date,
     datepicker: MatDatepicker<Date>
   ) {
     this.vmAccrual.firstDepositDate = normalizedMonthAndYear;
+    this.vmAccrual.withdrawalDate = add(normalizedMonthAndYear, {
+      months: this.vmAccrual.durationInMonths,
+    });
+    this.vmAccrual.minWithdrawalDate = add(normalizedMonthAndYear, {
+      months: MIN_ACCRUAL_DURATION_IN_MONTHS,
+    });
+    this.vmAccrual.maxWithdrawalDate = add(normalizedMonthAndYear, {
+      months: MAX_ACCRUAL_DURATION_IN_MONTHS,
+    });
+    console.log(this.vmAccrual);
     datepicker.close();
   }
 
-  private updateAccrual(id: string, accrualData: Omit<Accrual, 'id'>) {
-    this.db.updateAccrual(id, accrualData).subscribe({
-      next: () => {
-        this.snackBar.open('Accrual updated', undefined, { duration: 2000 });
-        this.router.navigateByUrl('/accruals');
-      },
-      error: (err) => {
-        this.snackBar.open(err.message, undefined, { duration: 2000 });
-      },
+  /**
+   * This method is called when the user changes the accrual withdrawal
+   * date, i.e. the date when the accrued sum can be withdrawn.
+   *
+   * The method updates the VMAccrual object fields affected when the
+   * user selects a withdrawal date using the form's Withdrawal Date
+   * datepicker control. Affected fields are withdrawalDate and the
+   * durationInMonths. The method finsihes by closing the datepicker
+   * control.
+   */
+  setWithdrawalMonthAndYear(
+    normalizedMonthAndYear: Date,
+    datepicker: MatDatepicker<Date>
+  ) {
+    this.vmAccrual.withdrawalDate = normalizedMonthAndYear;
+    const duration = intervalToDuration({
+      start: this.vmAccrual.firstDepositDate,
+      end: this.vmAccrual.withdrawalDate,
     });
-  }
-
-  private createAccrual(accrualData: Omit<Accrual, 'id'>) {
-    this.db.createAccrual(accrualData).subscribe({
-      next: () => {
-        this.snackBar.open('Accrual saved', undefined, { duration: 2000 });
-        this.router.navigateByUrl('/accruals');
-      },
-      error: (err) => {
-        this.snackBar.open(err.message, undefined, { duration: 2000 });
-      },
-    });
-  }
-
-  private vmToAccrualData(vmAccrual: VMAccrual): Omit<Accrual, 'id'> {
-    vmAccrual.depositSchedule = this.getDepositSchedule(vmAccrual);
-    /* eslint-disable @typescript-eslint/no-unused-vars */
-    const { id, totals, firstDepositDate, ...accrualData } = vmAccrual;
-    /* eslint-enable @typescript-eslint/no-unused-vars */
-    return accrualData as Omit<Accrual, 'id'>;
-  }
-
-  private getDepositSchedule(vmAccrual: VMAccrual): number[] {
-    const schedule: number[] = [];
-    const duration = vmAccrual.durationInMonths;
-    const total = vmAccrual.targetValue;
-    const deposit = Math.round((total / duration) * 100) / 100;
-    const finalDeposit =
-      Math.round((total - deposit * (duration - 1)) * 100) / 100;
-    for (let i = 0; i < duration - 1; i++) {
-      schedule.push(deposit);
-    }
-    schedule.push(finalDeposit);
-    return schedule;
+    this.vmAccrual.durationInMonths = duration.years ? duration.years * 12 : 0;
+    this.vmAccrual.durationInMonths += duration.months ? duration.months : 0;
+    console.log(this.vmAccrual.durationInMonths);
+    datepicker.close();
   }
 }

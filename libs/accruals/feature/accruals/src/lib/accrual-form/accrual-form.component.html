@@ -57,8 +57,8 @@
               id="firstDepositDate"
               name="firstDepositDate"
               [(ngModel)]="vmAccrual.firstDepositDate"
+              readonly
             />
-            <mat-hint>MM/YYYY</mat-hint>
             <mat-datepicker-toggle
               matIconSuffix
               [for]="dp"
@@ -70,20 +70,29 @@
             ></mat-datepicker>
           </mat-form-field>
           <mat-form-field class="w-full mt-4" appearance="outline">
-            <mat-label for="durationInMonths">Duration (months)</mat-label>
+            <mat-label for="withdrawalDate">Withdrawal Date</mat-label>
             <input
               matInput
-              type="number"
-              id="durationInMonths"
-              name="durationInMonths"
-              min="3"
-              max="60"
-              [(ngModel)]="vmAccrual.durationInMonths"
-              #durationInMonths="ngModel"
+              [matDatepicker]="dp2"
+              id="withdrawalDate"
+              name="withdrawalDate"
+              [(ngModel)]="vmAccrual.withdrawalDate"
+              [min]="vmAccrual.minWithdrawalDate"
+              [max]="vmAccrual.maxWithdrawalDate"
+              readonly
             />
-            <mat-error *ngIf="durationInMonths.invalid"
-              >Must be between 3 and 60 months</mat-error
+            <mat-hint
+              >{{ vmAccrual.durationInMonths }} monthly deposits</mat-hint
             >
+            <mat-datepicker-toggle
+              matIconSuffix
+              [for]="dp2"
+            ></mat-datepicker-toggle>
+            <mat-datepicker
+              #dp2
+              startView="multi-year"
+              (monthSelected)="setWithdrawalMonthAndYear($event, dp2)"
+            ></mat-datepicker>
           </mat-form-field>
         </div>
         <button

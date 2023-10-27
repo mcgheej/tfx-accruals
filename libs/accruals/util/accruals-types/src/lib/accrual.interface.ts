@@ -37,3 +37,8 @@ export interface Accrual {
   depositSchedule: number[];
   deleted: boolean;
 }
+
+export const MIN_ACCRUAL_DURATION_IN_MONTHS = 3;
+export const MAX_ACCRUAL_DURATION_IN_MONTHS = 60;
+export const DEFAULT_ACCRUAL_DURATION_IN_MONTHS = 12;
+export const DEFAULT_TARGET_VALUE = 120;
