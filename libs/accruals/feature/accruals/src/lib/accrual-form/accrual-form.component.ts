@@ -98,7 +98,6 @@ export class AccrualFormComponent {
     this.vmAccrual.maxWithdrawalDate = add(normalizedMonthAndYear, {
       months: MAX_ACCRUAL_DURATION_IN_MONTHS,
     });
-    console.log(this.vmAccrual);
     datepicker.close();
   }
 
@@ -123,7 +122,6 @@ export class AccrualFormComponent {
     });
     this.vmAccrual.durationInMonths = duration.years ? duration.years * 12 : 0;
     this.vmAccrual.durationInMonths += duration.months ? duration.months : 0;
-    console.log(this.vmAccrual.durationInMonths);
     datepicker.close();
   }
 }

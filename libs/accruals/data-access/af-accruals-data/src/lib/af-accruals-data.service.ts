@@ -39,7 +39,10 @@ export class AfAccrualsDataService {
         idField: 'id',
       }) as Observable<Accrual[]>
     ).pipe(
-      catchError(() => of([] as PresentationAccrual[])),
+      catchError((err) => {
+        console.log(err);
+        return of([] as PresentationAccrual[]);
+      }),
       map((accruals) => {
         return accruals.map(
           (accrual) =>
