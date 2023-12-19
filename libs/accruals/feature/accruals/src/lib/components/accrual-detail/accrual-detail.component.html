@@ -6,8 +6,8 @@
       {{ helpers.getDepositsStatement(accrual) }}
     </div>
     <div class="grid grid-cols-[50px,50px,50px,1fr]">
+      @if (tabType === 'active' || tabType === 'pending') {
       <button
-        *ngIf="tabType === 'active' || tabType === 'pending'"
         mat-icon-button
         matTooltip="edit accrual"
         color="accent"
@@ -15,10 +15,9 @@
       >
         <mat-icon>edit</mat-icon>
       </button>
+      } @if (tabType === 'active' || tabType === 'pending' || tabType ===
+      'expired') {
       <button
-        *ngIf="
-          tabType === 'active' || tabType === 'pending' || tabType === 'expired'
-        "
         mat-icon-button
         matTooltip="delete accrual"
         color="accent"
@@ -26,8 +25,8 @@
       >
         <mat-icon>delete</mat-icon>
       </button>
+      } @if (tabType === 'deleted') {
       <button
-        *ngIf="tabType === 'deleted'"
         mat-icon-button
         matTooltip="restore accrual"
         color="accent"
@@ -35,8 +34,8 @@
       >
         <mat-icon>restore_from_trash</mat-icon>
       </button>
+      } @if (tabType === 'deleted') {
       <button
-        *ngIf="tabType === 'deleted'"
         mat-icon-button
         matTooltip="permanently delete accrual"
         color="accent"
@@ -44,6 +43,7 @@
       >
         <mat-icon>delete_forever</mat-icon>
       </button>
+      }
     </div>
   </div>
   <!-- accrual progress -->

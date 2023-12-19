@@ -16,8 +16,8 @@
       {{ helper.getMessage(accrual) }}
     </div>
   </div>
+  @if (expandedAccrualId === accrual.id) {
   <tfx-accrual-detail
-    *ngIf="expandedAccrualId === accrual.id"
     [accrual]="accrual"
     [tabType]="tabType"
     (editAccrual)="editAccrual.emit()"
@@ -25,4 +25,5 @@
     (restoreAccrual)="restoreAccrual.emit()"
     (permanentDeleteAccrual)="permanentDeleteAccrual.emit()"
   ></tfx-accrual-detail>
+  }
 </div>

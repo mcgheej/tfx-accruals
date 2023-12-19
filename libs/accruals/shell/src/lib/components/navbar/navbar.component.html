@@ -12,16 +12,19 @@
   <ul
     class="hidden sm:flex sm:text-base sm:text-gray-700 sm:justify-between sm:pt-0"
   >
-    <li *ngFor="let props of navProps">
+    @for (props of navProps; track navProps) {
+    <li>
+      @if (loggedIn === props.loggedInRequired) {
       <a
-        *ngIf="loggedIn === props.loggedInRequired"
         class="p-4 py-2 block hover:text-purple-400"
         [routerLink]="props.url"
         routerLinkActive="active-link"
         >{{ props.title }}</a
       >
+      }
     </li>
-    <li *ngIf="loggedIn">
+    } @if (loggedIn) {
+    <li>
       <div
         class="p-4 py-2 block hover:text-purple-400 cursor-pointer select-none box-border"
         (click)="logoutClick.emit()"
@@ -29,5 +32,6 @@
         Logout
       </div>
     </li>
+    }
   </ul>
 </nav>

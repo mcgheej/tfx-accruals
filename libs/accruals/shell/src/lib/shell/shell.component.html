@@ -1,4 +1,5 @@
-<div *ngIf="vm$ | async as vm" class="flex flex-col h-full">
+@if (vm$ | async; as vm) {
+<div class="flex flex-col h-full">
   <tfx-navbar
     [navProps]="navProps"
     [loggedIn]="vm.loggedIn"
@@ -9,8 +10,10 @@
     <mat-sidenav-container class="h-full">
       <mat-sidenav class="w-64" #sidenav (keydown.escape)="sidenav.close()">
         <mat-nav-list>
-          <ng-container *ngFor="let props of navProps">
-            <mat-list-item *ngIf="vm.loggedIn === props.loggedInRequired">
+          @for (props of navProps; track navProps) {
+          <ng-container>
+            @if (vm.loggedIn === props.loggedInRequired) {
+            <mat-list-item>
               <a
                 matListItemTitle
                 class="no-underline text-white hover:text-gray-300"
@@ -19,14 +22,16 @@
                 >{{ props.title }}</a
               >
             </mat-list-item>
+            }
           </ng-container>
+          } @if (vm.loggedIn) {
           <mat-list-item
-            *ngIf="vm.loggedIn"
             class="no-underline text-white hover:text-gray-300"
             (click)="onLogout(sidenav)"
           >
             Logout
           </mat-list-item>
+          }
         </mat-nav-list>
       </mat-sidenav>
       <mat-sidenav-content>
@@ -37,3 +42,4 @@
     </mat-sidenav-container>
   </div>
 </div>
+}

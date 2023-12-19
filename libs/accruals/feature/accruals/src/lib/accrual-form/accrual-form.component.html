@@ -18,9 +18,9 @@
             [(ngModel)]="vmAccrual.name"
             #name="ngModel"
           />
-          <mat-error *ngIf="name.invalid && name.touched"
-            >Name is required</mat-error
-          >
+          @if (name.invalid && name.touched) {
+          <mat-error>Name is required</mat-error>
+          }
         </mat-form-field>
         <mat-form-field class="w-full mt-4" appearance="outline">
           <mat-label for="description">Description</mat-label>
@@ -44,9 +44,9 @@
             [(ngModel)]="vmAccrual.targetValue"
             #targetValue="ngModel"
           />
-          <mat-error *ngIf="targetValue.invalid"
-            >Target value can't be less than £50</mat-error
-          >
+          @if (targetValue.invalid) {
+          <mat-error>Target value can't be less than £50</mat-error>
+          }
         </mat-form-field>
         <div class="flex gap-1">
           <mat-form-field class="w-full mt-4" appearance="outline">

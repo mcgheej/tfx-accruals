@@ -19,9 +19,11 @@ export type TfxProgressDonutWidths = 'narrow' | 'standard' | 'wide';
   imports: [CommonModule],
   template: `
     <div [ngStyle]="donutStyles$ | async"></div>
-    <div *ngIf="showValue" class="legend">
+    @if (showValue) {
+    <div class="legend">
       <div class="percentage">{{ value }}%</div>
     </div>
+    }
   `,
   styles: [
     `

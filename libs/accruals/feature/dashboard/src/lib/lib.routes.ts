@@ -5,7 +5,7 @@ import { dashboardResolver } from './dashboard/dashboard.resolver';
 export const dashboardRoutes: Route[] = [
   {
     path: '',
-    component: DashboardComponent,
     resolve: { vmDashboard: dashboardResolver },
+    component: DashboardComponent,
   },
 ];
