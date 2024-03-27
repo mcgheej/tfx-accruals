@@ -17,10 +17,7 @@
     },
     "lint": {
       "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": ["libs/accruals/util/accruals-types/**/*.ts"]
-      }
+      "outputs": ["{options.outputFile}"]
     }
   },
   "tags": []

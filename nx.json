@@ -2,28 +2,33 @@
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "targetDefaults": {
     "build": {
-      "dependsOn": ["^build"],
-      "inputs": ["production", "^production"],
+      "dependsOn": [
+        "^build"
+      ],
+      "inputs": [
+        "production",
+        "^production"
+      ],
       "cache": true
     },
-    "lint": {
+    "@nx/eslint:lint": {
       "inputs": [
         "default",
         "{workspaceRoot}/.eslintrc.json",
         "{workspaceRoot}/.eslintignore"
       ],
       "cache": true
-    },
-    "test": {
-      "cache": true
-    },
-    "e2e": {
-      "cache": true
     }
   },
   "namedInputs": {
-    "default": ["{projectRoot}/**/*", "sharedGlobals"],
-    "production": ["default", "!{projectRoot}/.eslintrc.json"],
+    "default": [
+      "{projectRoot}/**/*",
+      "sharedGlobals"
+    ],
+    "production": [
+      "default",
+      "!{projectRoot}/.eslintrc.json"
+    ],
     "sharedGlobals": []
   },
   "generators": {
@@ -40,5 +45,6 @@
     "@nx/angular:component": {
       "style": "css"
     }
-  }
+  },
+  "useInferencePlugins": false
 }
