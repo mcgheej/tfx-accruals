@@ -17,8 +17,7 @@ import {
   MAX_ACCRUAL_DURATION_IN_MONTHS,
   MIN_ACCRUAL_DURATION_IN_MONTHS,
 } from '@tfx-accruals/accruals/util/accruals-types';
-import { add, format } from 'date-fns';
-import { intervalToDuration } from 'date-fns/esm';
+import { add, format, intervalToDuration } from 'date-fns';
 import { AccrualFormService } from './accrual-form.service';
 import { VMAccrual } from './vm-accrual';
 
