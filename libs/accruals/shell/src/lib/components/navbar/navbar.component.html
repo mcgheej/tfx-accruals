@@ -12,7 +12,7 @@
   <ul
     class="hidden sm:flex sm:text-base sm:text-gray-700 sm:justify-between sm:pt-0"
   >
-    @for (props of navProps; track navProps) {
+    @for (props of navProps; track props) {
     <li>
       @if (loggedIn === props.loggedInRequired) {
       <a

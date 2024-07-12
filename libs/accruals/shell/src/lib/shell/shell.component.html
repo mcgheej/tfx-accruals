@@ -10,7 +10,7 @@
     <mat-sidenav-container class="h-full">
       <mat-sidenav class="w-64" #sidenav (keydown.escape)="sidenav.close()">
         <mat-nav-list>
-          @for (props of navProps; track navProps) {
+          @for (props of navProps; track props) {
           <ng-container>
             @if (vm.loggedIn === props.loggedInRequired) {
             <mat-list-item>

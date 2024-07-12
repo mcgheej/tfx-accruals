@@ -46,3 +46,4 @@ firestore.rules
 .firebase/hosting.ZGlzdFxhcHBzXGFjY3J1YWxz.cache
 
 .nx/cache
+.nx/workspace-data

@@ -43,12 +43,10 @@ export const appConfig: ApplicationConfig = {
       withEnabledBlockingInitialNavigation(),
       withComponentInputBinding()
     ),
-    importProvidersFrom([
-      MatSnackBarModule,
-      provideFirebaseApp(() => initializeApp(firebaseConfig)),
-      provideAuth(() => getAuth()),
-      provideFirestore(() => getFirestore()),
-    ]),
+    provideFirebaseApp(() => initializeApp(firebaseConfig)),
+    provideAuth(() => getAuth()),
+    provideFirestore(() => getFirestore()),
+    importProvidersFrom([MatSnackBarModule]),
     provideAfAuthentication(),
     { provide: MAT_DATE_LOCALE, useValue: enGB },
     { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS },
