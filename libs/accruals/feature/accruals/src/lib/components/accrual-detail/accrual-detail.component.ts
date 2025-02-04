@@ -15,17 +15,16 @@ import { AccrualsTabTypes } from '../../tab-types.type';
 import * as helpers from './helpers';
 
 @Component({
-  selector: 'tfx-accrual-detail',
-  standalone: true,
-  imports: [
-    CommonModule,
-    MatButtonModule,
-    MatIconModule,
-    MatTooltipModule,
-    TfxProgressDonutComponent,
-  ],
-  templateUrl: './accrual-detail.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'tfx-accrual-detail',
+    imports: [
+        CommonModule,
+        MatButtonModule,
+        MatIconModule,
+        MatTooltipModule,
+        TfxProgressDonutComponent,
+    ],
+    templateUrl: './accrual-detail.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AccrualDetailComponent {
   helpers = helpers;

@@ -14,10 +14,9 @@ interface CssStyles {
 export type TfxProgressDonutWidths = 'narrow' | 'standard' | 'wide';
 
 @Component({
-  selector: 'tfx-progress-donut',
-  standalone: true,
-  imports: [CommonModule],
-  template: `
+    selector: 'tfx-progress-donut',
+    imports: [CommonModule],
+    template: `
     <div [ngStyle]="donutStyles$ | async"></div>
     @if (showValue) {
     <div class="legend">
@@ -25,8 +24,8 @@ export type TfxProgressDonutWidths = 'narrow' | 'standard' | 'wide';
     </div>
     }
   `,
-  styles: [
-    `
+    styles: [
+        `
       :host {
         display: grid;
         position: relative;
@@ -46,8 +45,8 @@ export type TfxProgressDonutWidths = 'narrow' | 'standard' | 'wide';
         justify-self: center;
       }
     `,
-  ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    ],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TfxProgressDonutComponent implements OnChanges {
   @Input() value = 0;

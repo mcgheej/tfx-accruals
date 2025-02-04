@@ -12,11 +12,10 @@ import { AccrualDetailComponent } from '../accrual-detail/accrual-detail.compone
 import * as helper from './helpers';
 
 @Component({
-  selector: 'tfx-accrual-summary',
-  standalone: true,
-  imports: [CommonModule, AccrualDetailComponent],
-  templateUrl: './accrual-summary.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'tfx-accrual-summary',
+    imports: [CommonModule, AccrualDetailComponent],
+    templateUrl: './accrual-summary.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AccrualSummaryComponent {
   @Input({ required: true }) accrual!: PresentationAccrual;

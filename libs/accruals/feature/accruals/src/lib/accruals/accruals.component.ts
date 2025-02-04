@@ -7,18 +7,17 @@ import { AccrualsListComponent } from '../components/accruals-list/accruals-list
 import { AccrualsService } from './accruals.service';
 
 @Component({
-  selector: 'tfx-accruals',
-  standalone: true,
-  imports: [
-    CommonModule,
-    MatButtonModule,
-    MatIconModule,
-    MatTabsModule,
-    AccrualsListComponent,
-  ],
-  templateUrl: './accruals.component.html',
-  providers: [AccrualsService],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'tfx-accruals',
+    imports: [
+        CommonModule,
+        MatButtonModule,
+        MatIconModule,
+        MatTabsModule,
+        AccrualsListComponent,
+    ],
+    templateUrl: './accruals.component.html',
+    providers: [AccrualsService],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AccrualsComponent {
   service = inject(AccrualsService);

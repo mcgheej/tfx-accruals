@@ -6,17 +6,16 @@ import { DashboardMonthComponent } from '../components/dashboard-month/dashboard
 import { VMDashboard } from '../dashboard.types';
 
 @Component({
-  selector: 'tfx-dashboard',
-  standalone: true,
-  imports: [
-    CommonModule,
-    DashboardAccrualsComponent,
-    DashboardAccountComponent,
-    DashboardMonthComponent,
-  ],
-  templateUrl: './dashboard.component.html',
-  styles: [],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'tfx-dashboard',
+    imports: [
+        CommonModule,
+        DashboardAccrualsComponent,
+        DashboardAccountComponent,
+        DashboardMonthComponent,
+    ],
+    templateUrl: './dashboard.component.html',
+    styles: [],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DashboardComponent {
   /**

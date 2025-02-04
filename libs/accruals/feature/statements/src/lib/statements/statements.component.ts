@@ -15,18 +15,17 @@ import { TransactionsComponent } from '../components/transactions/transactions.c
 import { displayStatementMonth } from '../helpers';
 
 @Component({
-  selector: 'tfx-statements',
-  standalone: true,
-  imports: [
-    CommonModule,
-    MatButtonModule,
-    MonthSelectorComponent,
-    StatementBalanceComponent,
-    TransactionsComponent,
-  ],
-  templateUrl: './statements.html',
-  styles: [],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'tfx-statements',
+    imports: [
+        CommonModule,
+        MatButtonModule,
+        MonthSelectorComponent,
+        StatementBalanceComponent,
+        TransactionsComponent,
+    ],
+    templateUrl: './statements.html',
+    styles: [],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class StatementsComponent {
   /**

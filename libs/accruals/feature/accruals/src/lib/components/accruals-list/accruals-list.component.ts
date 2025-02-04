@@ -13,16 +13,15 @@ import { AccrualsTabTypes } from '../../tab-types.type';
 import { AccrualSummaryComponent } from '../accrual-summary/accrual-summary.component';
 
 @Component({
-  selector: 'tfx-accruals-list',
-  standalone: true,
-  imports: [
-    CommonModule,
-    MatButtonModule,
-    MatIconModule,
-    AccrualSummaryComponent,
-  ],
-  templateUrl: './accruals-list.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'tfx-accruals-list',
+    imports: [
+        CommonModule,
+        MatButtonModule,
+        MatIconModule,
+        AccrualSummaryComponent,
+    ],
+    templateUrl: './accruals-list.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AccrualsListComponent {
   @Input({ required: true }) accruals!: PresentationAccrual[];

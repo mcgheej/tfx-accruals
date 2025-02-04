@@ -4,11 +4,10 @@ import { Transaction } from '@tfx-accruals/accruals/util/accruals-types';
 import { TransactionComponent } from '../transaction/transaction.component';
 
 @Component({
-  selector: 'tfx-transactions',
-  standalone: true,
-  imports: [CommonModule, TransactionComponent],
-  templateUrl: './transactions.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'tfx-transactions',
+    imports: [CommonModule, TransactionComponent],
+    templateUrl: './transactions.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TransactionsComponent {
   @Input({ required: true }) title!: string;

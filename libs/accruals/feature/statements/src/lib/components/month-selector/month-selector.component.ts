@@ -18,18 +18,17 @@ import { add, format, sub } from 'date-fns';
 import { displayStatementMonth } from '../../helpers';
 
 @Component({
-  selector: 'tfx-month-selector',
-  standalone: true,
-  imports: [
-    CommonModule,
-    MatButtonModule,
-    MatDatepickerModule,
-    MatIconModule,
-    MatInputModule,
-    MatTooltipModule,
-  ],
-  templateUrl: './month-selector.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'tfx-month-selector',
+    imports: [
+        CommonModule,
+        MatButtonModule,
+        MatDatepickerModule,
+        MatIconModule,
+        MatInputModule,
+        MatTooltipModule,
+    ],
+    templateUrl: './month-selector.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MonthSelectorComponent {
   @Input({ required: true }) statementMonth!: Date;

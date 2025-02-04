@@ -13,30 +13,29 @@ import { NavbarComponent } from '../components/navbar/navbar.component';
 import { NavProps } from '../shell.types';
 
 @Component({
-  selector: 'tfx-shell',
-  standalone: true,
-  imports: [
-    CommonModule,
-    RouterModule,
-    // RouterOutlet,
-    // RouterLink,
-    // RouterLinkActive,
-    MatButtonModule,
-    MatIconModule,
-    MatListModule,
-    MatSidenavModule,
-    MatToolbarModule,
-    NavbarComponent,
-  ],
-  templateUrl: './shell.component.html',
-  styles: [
-    `
+    selector: 'tfx-shell',
+    imports: [
+        CommonModule,
+        RouterModule,
+        // RouterOutlet,
+        // RouterLink,
+        // RouterLinkActive,
+        MatButtonModule,
+        MatIconModule,
+        MatListModule,
+        MatSidenavModule,
+        MatToolbarModule,
+        NavbarComponent,
+    ],
+    templateUrl: './shell.component.html',
+    styles: [
+        `
       .active-link {
         @apply text-indigo-500;
       }
     `,
-  ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    ],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ShellComponent {
   router = inject(Router);

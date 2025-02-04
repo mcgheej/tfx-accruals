@@ -12,24 +12,23 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { NavProps } from '../../shell.types';
 
 @Component({
-  selector: 'tfx-navbar',
-  standalone: true,
-  imports: [
-    CommonModule,
-    RouterLink,
-    RouterLinkActive,
-    MatButtonModule,
-    MatIconModule,
-  ],
-  templateUrl: './navbar.component.html',
-  styles: [
-    `
+    selector: 'tfx-navbar',
+    imports: [
+        CommonModule,
+        RouterLink,
+        RouterLinkActive,
+        MatButtonModule,
+        MatIconModule,
+    ],
+    templateUrl: './navbar.component.html',
+    styles: [
+        `
       .active-link {
         @apply underline decoration-2 underline-offset-8 decoration-indigo-500;
       }
     `,
-  ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    ],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NavbarComponent {
   @Input() navProps: NavProps[] = [];

@@ -22,19 +22,18 @@ import { AccrualFormService } from './accrual-form.service';
 import { VMAccrual } from './vm-accrual';
 
 @Component({
-  selector: 'tfx-accrual-form',
-  standalone: true,
-  imports: [
-    CommonModule,
-    FormsModule,
-    MatFormFieldModule,
-    MatButtonModule,
-    MatDatepickerModule,
-    MatInputModule,
-  ],
-  templateUrl: './accrual-form.component.html',
-  providers: [AccrualFormService],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'tfx-accrual-form',
+    imports: [
+        CommonModule,
+        FormsModule,
+        MatFormFieldModule,
+        MatButtonModule,
+        MatDatepickerModule,
+        MatInputModule,
+    ],
+    templateUrl: './accrual-form.component.html',
+    providers: [AccrualFormService],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AccrualFormComponent {
   /**

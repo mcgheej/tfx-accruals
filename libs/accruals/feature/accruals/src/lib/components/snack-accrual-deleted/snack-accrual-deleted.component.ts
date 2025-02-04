@@ -5,10 +5,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarRef } from '@angular/material/snack-bar';
 
 @Component({
-  selector: 'tfx-snack-accrual-deleted',
-  standalone: true,
-  imports: [CommonModule, MatButtonModule, MatIconModule],
-  template: `
+    selector: 'tfx-snack-accrual-deleted',
+    imports: [CommonModule, MatButtonModule, MatIconModule],
+    template: `
     <div class="w-full flex items-center">
       <div class="text-white text-base grow">Accrual deleted</div>
       <button mat-button color="accent" class="w-16" (click)="onUndo()">
@@ -26,7 +25,7 @@ import { MatSnackBarRef } from '@angular/material/snack-bar';
       </button>
     </div>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SnackAccrualDeletedComponent {
   private snackBarRef = inject(MatSnackBarRef<SnackAccrualDeletedComponent>);
